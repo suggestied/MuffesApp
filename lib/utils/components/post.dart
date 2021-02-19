@@ -8,6 +8,8 @@ class MuffesPost extends StatelessWidget {
       this.username,
       this.textContent,
       this.profilePicture,
+      this.storyWatched,
+      this.story,
       this.displayName})
       : super(key: key);
 
@@ -15,11 +17,17 @@ class MuffesPost extends StatelessWidget {
   final String textContent;
   final String profilePicture;
   final String displayName;
+  final bool storyWatched;
+  final bool story;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+          border: Border.symmetric(
+              horizontal:
+                  BorderSide(width: 2, color: customStyle().secondaryColor)),
+          color: customStyle().lightColor),
       child: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -27,17 +35,24 @@ class MuffesPost extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: customStyle().primaryColor,
-                        child: CircleAvatar(
-                          radius: 18,
-                          backgroundColor: customStyle().lightColor,
-                          child: CircleAvatar(
-                            radius: 17,
+                    child: (story == true)
+                        ? CircleAvatar(
+                            radius: 20,
+                            backgroundColor: (storyWatched == true)
+                                ? customStyle().primaryColor
+                                : customStyle().disabledColor,
+                            child: CircleAvatar(
+                              radius: 18,
+                              backgroundColor: customStyle().lightColor,
+                              child: CircleAvatar(
+                                radius: 17,
+                                backgroundImage: NetworkImage(profilePicture),
+                              ),
+                            ))
+                        : CircleAvatar(
+                            radius: 18,
                             backgroundImage: NetworkImage(profilePicture),
                           ),
-                        )),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 5),

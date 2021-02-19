@@ -18,7 +18,6 @@ class MuffesApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
         primarySwatch: Colors.orange,
-        canvasColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
