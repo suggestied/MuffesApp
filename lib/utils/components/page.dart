@@ -15,6 +15,8 @@ class PageDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       backgroundColor: customStyle().lightColor,
       appBar: AppBar(
         toolbarHeight: 64,
@@ -39,6 +41,7 @@ class PageDesign extends StatelessWidget {
       ),
       // The page
       body: SafeArea(
+        bottom: false,
         child: children,
       ),
       // End of the page

@@ -1,8 +1,10 @@
+import 'package:MuffesApp/screens/explore/explore.dart';
+import 'package:MuffesApp/screens/feed/feed.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-int _selectedIndex = 0;
+int selectedIndex = 0;
 
 class customBottomNavBar extends StatefulWidget {
   customBottomNavBar({Key key}) : super(key: key);
@@ -12,18 +14,68 @@ class customBottomNavBar extends StatefulWidget {
 }
 
 class customBottomNavBarState extends State<customBottomNavBar> {
-  int _currentIndex = 0;
-  final List<Widget> _children = [];
-
   void onTabTapped(int index) {
     setState(() {
-      _currentIndex = index;
+      selectedIndex = index;
     });
+    switch (index) {
+      //
+      case 0:
+        Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => Feed(),
+              transitionDuration: Duration(seconds: 0),
+            ));
+        break;
+      case 1:
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => Explore(),
+            transitionDuration: Duration(seconds: 0),
+          ),
+        );
+        break;
+      case 2:
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => Explore(),
+            transitionDuration: Duration(seconds: 0),
+          ),
+        );
+        break;
+      case 3:
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => Explore(),
+            transitionDuration: Duration(seconds: 0),
+          ),
+        );
+        break;
+      case 4:
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => Feed(),
+            transitionDuration: Duration(seconds: 0),
+          ),
+        );
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+        ),
         height: 90,
         child: ClipRRect(
           borderRadius: BorderRadius.only(
@@ -32,7 +84,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
           ),
           child: BottomNavigationBar(
             onTap: onTabTapped,
-            currentIndex: _currentIndex,
+            currentIndex: selectedIndex,
             showSelectedLabels: true,
             showUnselectedLabels: false,
             selectedItemColor: customStyle().primaryColor,

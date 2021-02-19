@@ -1,3 +1,4 @@
+import 'package:MuffesApp/screens/explore/explore.dart';
 import 'package:MuffesApp/screens/feed/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,18 +12,20 @@ class MuffesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Muffes',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         ),
+        canvasColor: Colors.transparent,
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
-        '/': (context) => Feed(),
+        '/home': (context) => Feed(),
+        '/explore': (context) => Explore(),
       },
     );
   }

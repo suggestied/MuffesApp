@@ -1,4 +1,4 @@
-import 'package:MuffesApp/screens/feed/story.dart';
+import 'package:MuffesApp/utils/components/story.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';

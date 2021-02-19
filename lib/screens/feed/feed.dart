@@ -1,6 +1,5 @@
 import 'package:MuffesApp/screens/feed/posts.dart';
 import 'package:MuffesApp/screens/feed/stories.dart';
-import 'package:MuffesApp/utils/components/bottomNavBar.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:MuffesApp/utils/components/page.dart';
 import 'package:flutter/material.dart';
