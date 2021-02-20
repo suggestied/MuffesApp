@@ -1,7 +1,7 @@
-import 'package:MuffesApp/screens/explore/explore.dart';
 import 'package:MuffesApp/screens/feed/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MuffesApp());
@@ -11,6 +11,10 @@ class MuffesApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'Muffes',
       debugShowCheckedModeBanner: false,
@@ -22,11 +26,7 @@ class MuffesApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/home',
-      routes: {
-        '/home': (context) => Feed(),
-        '/explore': (context) => Explore(),
-      },
+      home: Feed(),
     );
   }
 }

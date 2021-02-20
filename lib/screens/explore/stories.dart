@@ -42,6 +42,16 @@ class MuffesStoriesExplore extends StatelessWidget {
                 profilePicture: "https://source.unsplash.com/random",
                 watched: true,
               ),
+              MuffesStory(
+                username: "suggestied",
+                profilePicture: "https://source.unsplash.com/random",
+                watched: true,
+              ),
+              MuffesStory(
+                username: "suggestied",
+                profilePicture: "https://source.unsplash.com/random",
+                watched: true,
+              ),
             ],
           ),
         ),

@@ -23,13 +23,45 @@ class MuffesFeed extends StatelessWidget {
           ),
         ),
         MuffesPost(
+          username: "suggestied",
+          textContent: "Ewaaa",
+          profilePicture: "https://source.unsplash.com/random",
+          displayName: "suggestied",
+          story: true,
+          storyWatched: true,
+        ),
+        MuffesPost(
           username: "test",
           textContent: "Ewaaa",
           profilePicture: "https://source.unsplash.com/random",
           displayName: "suggestied",
           story: true,
           storyWatched: true,
-        )
+        ),
+        MuffesPost(
+          username: "test",
+          textContent: "Ewaaa",
+          profilePicture: "https://source.unsplash.com/random",
+          displayName: "suggestied",
+          story: true,
+          storyWatched: true,
+        ),
+        MuffesPost(
+          username: "test",
+          textContent: "Ewaaa",
+          profilePicture: "https://source.unsplash.com/random",
+          displayName: "suggestied",
+          story: true,
+          storyWatched: true,
+        ),
+        MuffesPost(
+          username: "test",
+          textContent: "Ewaaa",
+          profilePicture: "https://source.unsplash.com/random",
+          displayName: "suggestied",
+          story: true,
+          storyWatched: true,
+        ),
       ],
     );
   }

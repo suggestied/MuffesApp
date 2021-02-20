@@ -9,6 +9,8 @@ class Feed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageDesign(
+      withSafeTop: true,
+      withAppBar: true,
       children: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           MuffesStoriesFeed(),
