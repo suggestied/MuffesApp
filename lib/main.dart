@@ -1,4 +1,5 @@
 import 'package:MuffesApp/screens/feed/feed.dart';
+import 'package:MuffesApp/screens/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +27,7 @@ class MuffesApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Feed(),
+      home: Login(),
     );
   }
 }
