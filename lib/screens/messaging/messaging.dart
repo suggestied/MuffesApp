@@ -22,6 +22,7 @@ class Messaging extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     TabBar(
+                      labelColor: Colors.black,
                       tabs: <Widget>[
                         Tab(
                           text: "Private",

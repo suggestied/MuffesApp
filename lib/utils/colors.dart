@@ -15,4 +15,25 @@ class customStyle {
       Color.fromRGBO(255, 95, 73, 1)
     ],
   ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
+  final orangeGradientNotShaders = LinearGradient(
+      colors: [Color.fromRGBO(255, 131, 61, 1), Color.fromRGBO(255, 95, 73, 1)],
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight);
+
+  Map<int, Color> primaryColorMaterial = {
+    50: Color.fromRGBO(255, 95, 73, .1),
+    100: Color.fromRGBO(255, 95, 73, .2),
+    200: Color.fromRGBO(255, 95, 73, .3),
+    300: Color.fromRGBO(255, 95, 73, .4),
+    400: Color.fromRGBO(255, 95, 73, .5),
+    500: Color.fromRGBO(255, 95, 73, .6),
+    600: Color.fromRGBO(255, 95, 73, .7),
+    700: Color.fromRGBO(255, 95, 73, .8),
+    800: Color.fromRGBO(255, 95, 73, .9),
+    900: Color.fromRGBO(255, 95, 73, 1),
+  };
 }
+
+MaterialColor primaryColor =
+    MaterialColor(0xFFFF5F49, customStyle().primaryColorMaterial);

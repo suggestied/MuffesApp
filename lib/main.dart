@@ -1,5 +1,5 @@
-import 'package:MuffesApp/screens/feed/feed.dart';
-import 'package:MuffesApp/screens/login/login.dart';
+import 'package:MuffesApp/screens/app.dart';
+import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
@@ -23,11 +23,13 @@ class MuffesApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         ),
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         canvasColor: Colors.transparent,
-        primarySwatch: Colors.orange,
+        primarySwatch: primaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Login(),
+      home: CheckAuth(),
     );
   }
 }
