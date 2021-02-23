@@ -19,6 +19,9 @@ class _RegisterState extends State<Register> {
   var email;
   var emailError;
 
+  var username;
+  var usernameError;
+
   var password;
   var passwordError;
 
@@ -43,6 +46,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         backgroundColor: customStyle().lightColor,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -126,9 +130,9 @@ class _RegisterState extends State<Register> {
                                   ),
                                   validator: (x) {
                                     if (x.isEmpty) {
-                                      return 'Please enter your email';
+                                      return 'Please enter your username';
                                     }
-                                    email = x;
+                                    username = x;
                                     return null;
                                   },
                                 ),
@@ -190,7 +194,7 @@ class _RegisterState extends State<Register> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Email",
+                                  "Password",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -202,6 +206,7 @@ class _RegisterState extends State<Register> {
                                       AutovalidateMode.onUserInteraction,
                                   autofocus: false,
                                   autocorrect: false,
+                                  obscureText: true,
                                   decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius:
@@ -224,58 +229,9 @@ class _RegisterState extends State<Register> {
                                   ),
                                   validator: (x) {
                                     if (x.isEmpty) {
-                                      return 'Please enter your email';
+                                      return 'Please enter your password';
                                     }
-                                    email = x;
-                                    return null;
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Email",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  autofocus: false,
-                                  autocorrect: false,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
-                                      borderSide: BorderSide(
-                                          color: customStyle().disabledColor,
-                                          width: 2),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
-                                      borderSide: BorderSide(width: 2),
-                                    ),
-                                    filled: true,
-                                    fillColor: customStyle().secondaryColor,
-                                    hintText: 'example@muffes.com',
-                                    hintStyle: TextStyle(
-                                        fontSize: 16,
-                                        color: customStyle().disabledColor),
-                                  ),
-                                  validator: (x) {
-                                    if (x.isEmpty) {
-                                      return 'Please enter your email';
-                                    }
-                                    email = x;
+                                    password = x;
                                     return null;
                                   },
                                 ),
@@ -295,7 +251,11 @@ class _RegisterState extends State<Register> {
                                     letterSpacing: 20 / (100 / 25.5),
                                   ),
                                 ),
-                                callback: () {},
+                                callback: () {
+                                  if (_formKey.currentState.validate()) {
+                                    _register();
+                                  }
+                                },
                                 gradient:
                                     customStyle().orangeGradientNotShaders,
                                 shadowColor: customStyle()
@@ -350,11 +310,13 @@ class _RegisterState extends State<Register> {
       _isLoading = true;
     });
     var data = {
+      'displayname': username,
+      'username': username,
       'email': email,
       'password': password,
     };
 
-    var res = await MuffesApi().patchData(false, '/user/auth', data);
+    var res = await MuffesApi().postData(false, '/user', data);
     var body = json.decode(res.body);
     if (res.statusCode == 200) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
