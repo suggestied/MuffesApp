@@ -6,6 +6,7 @@ class MuffesApi {
   final String _url = 'https://api.muffes.com/v1';
 
   var token;
+  int userId;
 
   _getToken() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();

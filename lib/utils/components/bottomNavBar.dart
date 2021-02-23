@@ -1,6 +1,8 @@
 import 'package:MuffesApp/screens/explore/explore.dart';
 import 'package:MuffesApp/screens/feed/feed.dart';
 import 'package:MuffesApp/screens/messaging/messaging.dart';
+import 'package:MuffesApp/screens/profile/profile.dart';
+import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -60,7 +62,8 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         Navigator.pushReplacement(
           context,
           PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => Messaging(),
+            pageBuilder: (context, animation1, animation2) =>
+                Profile(userId: 1),
             transitionDuration: Duration(seconds: 0),
           ),
         );
