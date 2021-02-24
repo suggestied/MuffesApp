@@ -123,7 +123,7 @@ class _RegisterState extends State<Register> {
                                     ),
                                     filled: true,
                                     fillColor: customStyle().secondaryColor,
-                                    hintText: 'example@muffes.com',
+                                    hintText: 'muffes',
                                     hintStyle: TextStyle(
                                         fontSize: 16,
                                         color: customStyle().disabledColor),
@@ -222,7 +222,7 @@ class _RegisterState extends State<Register> {
                                     ),
                                     filled: true,
                                     fillColor: customStyle().secondaryColor,
-                                    hintText: 'example@muffes.com',
+                                    hintText: 'ExAmPLEPaSSWoRD!1284xoXo',
                                     hintStyle: TextStyle(
                                         fontSize: 16,
                                         color: customStyle().disabledColor),

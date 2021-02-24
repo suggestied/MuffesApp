@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:MuffesApp/screens/explore/explore.dart';
 import 'package:MuffesApp/screens/feed/feed.dart';
 import 'package:MuffesApp/screens/messaging/messaging.dart';
@@ -6,6 +8,7 @@ import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 int selectedIndex = 0;
 
@@ -17,6 +20,25 @@ class customBottomNavBar extends StatefulWidget {
 }
 
 class customBottomNavBarState extends State<customBottomNavBar> {
+  int myUserId;
+  @override
+  void initState() {
+    _loadUserId();
+    super.initState();
+  }
+
+  _loadUserId() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var user = jsonDecode(localStorage.getString('user'));
+
+    if (user != null) {
+      setState(() {
+        myUserId = user['id'];
+      });
+    }
+  }
+
+  @override
   void onTabTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -63,7 +85,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
-                Profile(userId: 1),
+                Profile(userId: myUserId),
             transitionDuration: Duration(seconds: 0),
           ),
         );

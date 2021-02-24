@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:MuffesApp/utils/components/page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,27 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  var displayname;
+  var username;
+  @override
+  void initState() {
+    _loadUserProfile(1);
+    super.initState();
+  }
+
+  _loadUserProfile(userId) async {
+    var res = await MuffesApi().getData(true, '/user/$userId');
+
+    var body = json.decode(res.body);
+
+    if (res.statusCode == 200) {
+      setState(() {
+        username = body[0]['username'];
+        displayname = body[0]['displayname'];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return PageDesign(
@@ -48,7 +72,7 @@ class _ProfileState extends State<Profile> {
             child: Column(
               children: [
                 Text(
-                  "suggestied",
+                  "@$username",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -56,7 +80,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Text(
-                  "suggestied",
+                  "$displayname",
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 16,
