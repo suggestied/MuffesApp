@@ -3,6 +3,7 @@ import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:camera/camera.dart';
 
 void main() {
   runApp(MuffesApp());

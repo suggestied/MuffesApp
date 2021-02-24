@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:MuffesApp/screens/explore/explore.dart';
 import 'package:MuffesApp/screens/feed/feed.dart';
 import 'package:MuffesApp/screens/messaging/messaging.dart';
+import 'package:MuffesApp/screens/post/newPost.dart';
 import 'package:MuffesApp/screens/profile/profile.dart';
 import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
@@ -46,7 +47,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
     switch (index) {
       //
       case 0:
-        Navigator.pushReplacement(
+        Navigator.push(
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation1, animation2) => Feed(),
@@ -54,7 +55,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
             ));
         break;
       case 1:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Explore(),
@@ -63,16 +64,16 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         );
         break;
       case 2:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => Explore(),
+            pageBuilder: (context, animation1, animation2) => newPost(),
             transitionDuration: Duration(seconds: 0),
           ),
         );
         break;
       case 3:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Messaging(),
@@ -81,7 +82,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         );
         break;
       case 4:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
