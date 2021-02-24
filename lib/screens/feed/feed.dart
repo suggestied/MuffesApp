@@ -12,6 +12,7 @@ class Feed extends StatelessWidget {
       withSafeTop: true,
       withAppBar: true,
       children: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           MuffesStoriesFeed(),
           MuffesFeed(),
