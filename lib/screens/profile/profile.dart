@@ -22,6 +22,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   var displayname;
   var username;
+  var posts;
+
   @override
   void initState() {
     _loadUserProfile(1);
@@ -37,6 +39,7 @@ class _ProfileState extends State<Profile> {
       setState(() {
         username = body[0]['username'];
         displayname = body[0]['displayname'];
+        posts = body[0]['post'];
       });
     }
   }
@@ -217,7 +220,7 @@ class _ProfileState extends State<Profile> {
               primary: false,
               shrinkWrap: true,
               crossAxisCount: 3,
-              itemCount: 18,
+              itemCount: 2,
               itemBuilder: (context, index) => Center(
                   child: Container(
                 height: double.infinity,

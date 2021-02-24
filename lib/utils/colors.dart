@@ -10,10 +10,7 @@ class customStyle {
   final kindaLightColor = Color.fromRGBO(232, 232, 232, 1);
 
   final Shader orangeGradient = LinearGradient(
-    colors: <Color>[
-      Color.fromRGBO(255, 131, 61, 1),
-      Color.fromRGBO(255, 95, 73, 1)
-    ],
+    colors: [Color.fromRGBO(255, 131, 61, 1), Color.fromRGBO(255, 95, 73, 1)],
   ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
   final orangeGradientNotShaders = LinearGradient(
