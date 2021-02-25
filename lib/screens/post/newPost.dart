@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:MuffesApp/utils/components/bottomNavBar.dart';
 
 List<CameraDescription> cameras;
 
@@ -44,11 +45,17 @@ class _newPostState extends State<newPost> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_isReady) {
-      return Container();
-    }
-    return AspectRatio(
-        aspectRatio: cController.value.aspectRatio,
-        child: CameraPreview(cController));
+    return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: customBottomNavBar(),
+      body: _isReady == true
+          ? Container(
+              height: MediaQuery.of(context).size.height,
+              child: AspectRatio(
+                  aspectRatio: cController.value.aspectRatio,
+                  child: CameraPreview(cController)),
+            )
+          : Container(),
+    );
   }
 }

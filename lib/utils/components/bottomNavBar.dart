@@ -47,7 +47,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
     switch (index) {
       //
       case 0:
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation1, animation2) => Feed(),
@@ -55,7 +55,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
             ));
         break;
       case 1:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Explore(),
@@ -64,7 +64,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         );
         break;
       case 2:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => newPost(),
@@ -73,7 +73,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         );
         break;
       case 3:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Messaging(),
@@ -82,7 +82,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         );
         break;
       case 4:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
