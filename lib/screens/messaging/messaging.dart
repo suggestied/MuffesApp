@@ -12,6 +12,7 @@ class Messaging extends StatelessWidget {
       withSafeTop: true,
       withAppBar: true,
       children: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
