@@ -1,24 +1,33 @@
+import 'package:MuffesApp/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:MuffesApp/utils/colors.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MuffesPost extends StatelessWidget {
-  const MuffesPost(
-      {Key key,
-      this.username,
-      this.textContent,
-      this.profilePicture,
-      this.storyWatched,
-      this.story,
-      this.displayName})
-      : super(key: key);
+  const MuffesPost({
+    Key key,
+    this.id,
+    this.username,
+    this.textContent,
+    this.profilePicture,
+    this.storyWatched,
+    this.story,
+    this.displayName,
+    this.files,
+    this.token,
+  }) : super(key: key);
 
+  final int id;
   final String username;
   final String textContent;
   final String profilePicture;
   final String displayName;
   final bool storyWatched;
   final bool story;
+  final files;
+  final token;
 
   @override
   Widget build(BuildContext context) {
@@ -78,19 +87,43 @@ class MuffesPost extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.15000000596046448),
-                        offset: Offset(0, 4),
-                        blurRadius: 8)
-                  ],
-                ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(13.0),
-                  child: Image.network(
-                    "https://source.unsplash.com/1600x1600/?nature",
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      enableInfiniteScroll: false,
+                      autoPlay: false,
+                      initialPage: 0,
+                      aspectRatio: 1,
+                      viewportFraction: 1,
+                    ),
+                    items: [
+                      for (var i = 0; i < files; i++) i,
+                    ].map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            color: customStyle().secondaryColor,
+                            width: MediaQuery.of(context).size.width,
+                            child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://api.muffes.com/v1/post/$id/$i",
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                httpHeaders: {
+                                  'Authorization': 'Bearer $token'
+                                }),
+                          );
+                        },
+                      );
+                    }).toList(),
                   ),
                 ),
               ),

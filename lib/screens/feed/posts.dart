@@ -8,6 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
+Future<List> fetchAlbum() async {
+  final response = await await MuffesApi().getData(true, '/post/feed');
+
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
 class MuffesFeed extends StatefulWidget {
   MuffesFeed({Key key}) : super(key: key);
 
@@ -18,6 +28,7 @@ class MuffesFeed extends StatefulWidget {
 class _MuffesFeedState extends State<MuffesFeed> {
   var posts;
   var postcount;
+  var userToken;
 
   @override
   void initState() {
@@ -29,14 +40,20 @@ class _MuffesFeedState extends State<MuffesFeed> {
     var res = await MuffesApi().getData(true, '/post/feed');
 
     var body = json.decode(res.body);
+    var _token = await MuffesApi().getToken();
 
     if (res.statusCode == 200) {
       setState(() {
         posts = body['posts'];
         postcount = body['posts_count'];
+        userToken = _token;
       });
-      print(body['posts']);
     }
+  }
+
+  Future<List<dynamic>> fetchPosts() async {
+    var resultFuture = await MuffesApi().getData(true, '/post/feed');
+    return json.decode(resultFuture.body)['posts'];
   }
 
   @override
@@ -57,14 +74,40 @@ class _MuffesFeedState extends State<MuffesFeed> {
         ),
         Container(
           width: double.infinity,
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).size.height / 10),
           child: postcount != 0
-              ? MuffesPost(
-                  username: "suggestied",
-                  textContent: "Ewaaa",
-                  profilePicture: "https://source.unsplash.com/random",
-                  displayName: "suggestied",
-                  story: true,
-                  storyWatched: true,
+              ? FutureBuilder<List>(
+                  future: fetchPosts(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          primary: false,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.all(8),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return MuffesPost(
+                              id: snapshot.data[index]['id'],
+                              username: snapshot.data[index]['user']['username']
+                                  .toString(),
+                              textContent:
+                                  snapshot.data[index]['content'].toString(),
+                              profilePicture:
+                                  "https://source.unsplash.com/random",
+                              displayName: snapshot.data[index]['user']
+                                      ['displayname']
+                                  .toString(),
+                              story: true,
+                              storyWatched: true,
+                              files: snapshot.data[index]['files_count'],
+                              token: userToken,
+                            );
+                          });
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
                 )
               : Container(
                   padding: EdgeInsets.symmetric(

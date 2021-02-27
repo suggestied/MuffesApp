@@ -8,6 +8,10 @@ class MuffesApi {
   var token;
   int userId;
 
+  getToken() async {
+    return await _getToken();
+  }
+
   _getToken() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     token = jsonDecode(localStorage.getString('token'));

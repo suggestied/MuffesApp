@@ -32,7 +32,7 @@ class _RegisterState extends State<Register> {
 
   _showMsg(msg) {
     final snackBar = SnackBar(
-      content: Text(msg),
+      content: Text(msg.toString()),
       action: SnackBarAction(
         label: 'Close',
         onPressed: () {
