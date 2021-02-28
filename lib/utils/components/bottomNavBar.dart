@@ -22,6 +22,8 @@ class customBottomNavBar extends StatefulWidget {
 
 class customBottomNavBarState extends State<customBottomNavBar> {
   int myUserId;
+  var userToken;
+
   @override
   void initState() {
     _loadUserId();
@@ -31,10 +33,12 @@ class customBottomNavBarState extends State<customBottomNavBar> {
   _loadUserId() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var user = jsonDecode(localStorage.getString('user'));
+    var _token = await MuffesApi().getToken();
 
     if (user != null) {
       setState(() {
         myUserId = user['id'];
+        userToken = _token;
       });
     }
   }
@@ -85,8 +89,10 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         Navigator.pushReplacement(
           context,
           PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                Profile(userId: myUserId),
+            pageBuilder: (context, animation1, animation2) => Profile(
+              userId: myUserId,
+              token: userToken,
+            ),
             transitionDuration: Duration(seconds: 0),
           ),
         );

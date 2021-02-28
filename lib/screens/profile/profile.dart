@@ -4,6 +4,7 @@ import 'package:MuffesApp/screens/profile/editProfile.dart';
 import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:MuffesApp/utils/components/page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -12,9 +13,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   final int userId;
+  final token;
   const Profile({
     Key key,
     this.userId,
+    this.token,
   }) : super(key: key);
 
   @override
@@ -45,6 +48,12 @@ class _ProfileState extends State<Profile> {
         myUserId = user['id'];
       });
     }
+  }
+
+  Future<List<dynamic>> fetchPosts() async {
+    var resultFuture =
+        await MuffesApi().getData(true, '/user/' + widget.userId.toString());
+    return json.decode(resultFuture.body)[0]['post'];
   }
 
   _loadUserProfile(userId) async {
@@ -305,34 +314,69 @@ class _ProfileState extends State<Profile> {
                   ),
           ),
           Container(
-            margin: EdgeInsets.only(
-              left: 8,
-              right: 8,
-              top: 20,
-            ),
-            child: StaggeredGridView.countBuilder(
-              primary: false,
-              shrinkWrap: true,
-              crossAxisCount: 3,
-              itemCount: 2,
-              itemBuilder: (context, index) => Center(
-                  child: Container(
-                height: double.infinity,
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(13.0),
-                  child: Image.network(
-                    "https://source.unsplash.com/1600x1600/?nature",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              margin: EdgeInsets.only(
+                left: 8,
+                right: 8,
+                top: 20,
+              ),
+              child: FutureBuilder<List>(
+                future: fetchPosts(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return StaggeredGridView.countBuilder(
+                      primary: false,
+                      shrinkWrap: true,
+                      crossAxisCount: 3,
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) => Center(
+                          child: Container(
+                        height: double.infinity,
+                        width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(13.0),
+                          child: CachedNetworkImage(
+                              imageUrl: "https://api.muffes.com/v1/post/" +
+                                  (index + 1).toString() +
+                                  "/0",
+                              fit: BoxFit.cover,
+                              httpHeaders: {
+                                'Authorization': 'Bearer ' + widget.token
+                              }),
+                        ),
+                      )),
+                      staggeredTileBuilder: (index) => StaggeredTile.count(
+                          (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0,
+                    );
+                    // return ListView.builder(
+                    //     primary: false,
+                    //     shrinkWrap: true,
+                    //     padding: EdgeInsets.all(8),
+                    //     itemCount: snapshot.data.length,
+                    //     itemBuilder: (BuildContext context, int index) {
+                    //       return MuffesPost(
+                    //         id: snapshot.data[index]['id'],
+                    //         username: snapshot.data[index]['user']['username']
+                    //             .toString(),
+                    //         textContent:
+                    //             snapshot.data[index]['content'].toString(),
+                    //         profilePicture:
+                    //             "https://source.unsplash.com/random",
+                    //         displayName: snapshot.data[index]['user']
+                    //                 ['displayname']
+                    //             .toString(),
+                    //         story: true,
+                    //         storyWatched: true,
+                    //         files: snapshot.data[index]['files_count'],
+                    //         token: userToken,
+                    //       );
+                    //     });
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
               )),
-              staggeredTileBuilder: (index) => StaggeredTile.count(
-                  (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
-            ),
-          ),
         ]),
       ),
     );

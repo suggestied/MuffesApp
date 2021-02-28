@@ -8,16 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-Future<List> fetchAlbum() async {
-  final response = await await MuffesApi().getData(true, '/post/feed');
-
-  if (response.statusCode == 200) {
-    return jsonDecode(response.body);
-  } else {
-    throw Exception('Failed to load');
-  }
-}
-
 class MuffesFeed extends StatefulWidget {
   MuffesFeed({Key key}) : super(key: key);
 

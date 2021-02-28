@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:MuffesApp/screens/profile/profile.dart';
+import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:MuffesApp/utils/components/page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   int myUserId;
+  var userToken;
+
   @override
   void initState() {
     _loadUserId();
@@ -26,10 +29,12 @@ class _EditProfileState extends State<EditProfile> {
   _loadUserId() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var user = jsonDecode(localStorage.getString('user'));
+    var _token = await MuffesApi().getToken();
 
     if (user != null) {
       setState(() {
         myUserId = user['id'];
+        userToken = _token;
       });
     }
   }
@@ -44,8 +49,10 @@ class _EditProfileState extends State<EditProfile> {
             Navigator.pushReplacement(
               context,
               PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) =>
-                    Profile(userId: myUserId),
+                pageBuilder: (context, animation1, animation2) => Profile(
+                  userId: myUserId,
+                  token: userToken,
+                ),
                 transitionDuration: Duration(seconds: 0),
               ),
             );
