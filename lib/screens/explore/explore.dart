@@ -1,6 +1,6 @@
-import 'package:MuffesApp/screens/explore/stories.dart';
-import 'package:MuffesApp/utils/colors.dart';
-import 'package:MuffesApp/utils/components/page.dart';
+import 'package:muffesapp/screens/explore/stories.dart';
+import 'package:muffesapp/utils/colors.dart';
+import 'package:muffesapp/utils/components/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

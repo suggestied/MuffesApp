@@ -1,6 +1,6 @@
-import 'package:MuffesApp/utils/colors.dart';
-import 'package:MuffesApp/utils/components/bottomNavBar.dart';
-import 'package:MuffesApp/utils/components/post.dart';
+import 'package:muffesapp/utils/colors.dart';
+import 'package:muffesapp/utils/components/bottomNavBar.dart';
+import 'package:muffesapp/utils/components/post.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePosts extends StatelessWidget {

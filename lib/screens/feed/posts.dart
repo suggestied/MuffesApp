@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:MuffesApp/utils/api.dart';
-import 'package:MuffesApp/utils/components/post.dart';
+import 'package:muffesapp/utils/api.dart';
+import 'package:muffesapp/utils/components/post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:MuffesApp/utils/colors.dart';
+import 'package:muffesapp/utils/colors.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class MuffesFeed extends StatefulWidget {

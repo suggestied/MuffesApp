@@ -1,4 +1,4 @@
-import 'package:MuffesApp/utils/colors.dart';
+import 'package:muffesapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class ChatComponent extends StatelessWidget {

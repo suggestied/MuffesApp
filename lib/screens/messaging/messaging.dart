@@ -1,7 +1,7 @@
-import 'package:MuffesApp/screens/messaging/chat.dart';
-import 'package:MuffesApp/screens/messaging/private.dart';
-import 'package:MuffesApp/utils/colors.dart';
-import 'package:MuffesApp/utils/components/page.dart';
+import 'package:muffesapp/screens/messaging/chat.dart';
+import 'package:muffesapp/screens/messaging/private.dart';
+import 'package:muffesapp/utils/colors.dart';
+import 'package:muffesapp/utils/components/page.dart';
 import 'package:flutter/material.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
 

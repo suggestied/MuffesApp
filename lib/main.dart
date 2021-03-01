@@ -1,5 +1,5 @@
-import 'package:MuffesApp/screens/app.dart';
-import 'package:MuffesApp/utils/colors.dart';
+import 'package:muffesapp/screens/app.dart';
+import 'package:muffesapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';

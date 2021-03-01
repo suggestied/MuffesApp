@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:MuffesApp/screens/explore/explore.dart';
-import 'package:MuffesApp/screens/feed/feed.dart';
-import 'package:MuffesApp/screens/messaging/messaging.dart';
-import 'package:MuffesApp/screens/post/newPost.dart';
-import 'package:MuffesApp/screens/profile/profile.dart';
-import 'package:MuffesApp/utils/api.dart';
-import 'package:MuffesApp/utils/colors.dart';
+import 'package:muffesapp/screens/explore/explore.dart';
+import 'package:muffesapp/screens/feed/feed.dart';
+import 'package:muffesapp/screens/messaging/messaging.dart';
+import 'package:muffesapp/screens/post/newPost.dart';
+import 'package:muffesapp/screens/profile/profile.dart';
+import 'package:muffesapp/utils/api.dart';
+import 'package:muffesapp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';

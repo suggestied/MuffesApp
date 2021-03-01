@@ -1,7 +1,7 @@
-import 'package:MuffesApp/utils/api.dart';
+import 'package:muffesapp/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:MuffesApp/utils/colors.dart';
+import 'package:muffesapp/utils/colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 

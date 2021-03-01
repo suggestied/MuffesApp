@@ -1,4 +1,4 @@
-import 'package:MuffesApp/screens/messaging/chat.dart';
+import 'package:muffesapp/screens/messaging/chat.dart';
 import 'package:flutter/material.dart';
 
 class PrivateChats extends StatelessWidget {

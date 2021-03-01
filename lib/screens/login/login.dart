@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:MuffesApp/screens/feed/feed.dart';
-import 'package:MuffesApp/screens/register/register.dart';
-import 'package:MuffesApp/utils/api.dart';
+import 'package:muffesapp/screens/feed/feed.dart';
+import 'package:muffesapp/screens/register/register.dart';
+import 'package:muffesapp/utils/api.dart';
 import 'package:flutter/material.dart';
-import 'package:MuffesApp/utils/colors.dart';
+import 'package:muffesapp/utils/colors.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

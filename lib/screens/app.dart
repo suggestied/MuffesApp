@@ -1,5 +1,5 @@
-import 'package:MuffesApp/screens/feed/feed.dart';
-import 'package:MuffesApp/screens/login/login.dart';
+import 'package:muffesapp/screens/feed/feed.dart';
+import 'package:muffesapp/screens/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
