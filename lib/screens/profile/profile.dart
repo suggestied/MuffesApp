@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:MuffesApp/screens/profile/editProfile.dart';
+import 'package:MuffesApp/screens/profile/posts.dart';
 import 'package:MuffesApp/utils/api.dart';
 import 'package:MuffesApp/utils/colors.dart';
 import 'package:MuffesApp/utils/components/page.dart';
@@ -333,16 +334,32 @@ class _ProfileState extends State<Profile> {
                         height: double.infinity,
                         width: double.infinity,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(13.0),
-                          child: CachedNetworkImage(
-                              imageUrl: "https://api.muffes.com/v1/post/" +
-                                  (index + 1).toString() +
-                                  "/0",
-                              fit: BoxFit.cover,
-                              httpHeaders: {
-                                'Authorization': 'Bearer ' + widget.token
-                              }),
-                        ),
+                            borderRadius: BorderRadius.circular(13.0),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    PageRouteBuilder(
+                                      pageBuilder:
+                                          (context, animation1, animation2) =>
+                                              ProfilePosts(
+                                        data: snapshot.data,
+                                        userToken: widget.token,
+                                        displayName: displayname,
+                                        username: username,
+                                      ),
+                                      transitionDuration: Duration(seconds: 0),
+                                    ));
+                              },
+                              child: CachedNetworkImage(
+                                  imageUrl: "https://api.muffes.com/v1/post/" +
+                                      (index + 1).toString() +
+                                      "/0",
+                                  fit: BoxFit.cover,
+                                  httpHeaders: {
+                                    'Authorization': 'Bearer ' + widget.token
+                                  }),
+                            )),
                       )),
                       staggeredTileBuilder: (index) => StaggeredTile.count(
                           (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),

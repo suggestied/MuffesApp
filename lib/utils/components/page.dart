@@ -28,6 +28,7 @@ class PageDesign extends StatelessWidget {
 
       appBar: (withAppBar == true)
           ? AppBar(
+              automaticallyImplyLeading: false,
               toolbarHeight: 64,
               title: Text(
                 pageTitle,
