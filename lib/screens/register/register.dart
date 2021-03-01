@@ -62,7 +62,8 @@ class _RegisterState extends State<Register> {
                           alignment: Alignment.bottomCenter,
                           child: GradientText(
                             "PLEASE REGISTER",
-                            gradient: customStyle().orangeGradientNotShaders,
+                            gradient:
+                                customStyle().bluePurpleGradientNotShaders,
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -257,9 +258,9 @@ class _RegisterState extends State<Register> {
                                   }
                                 },
                                 gradient:
-                                    customStyle().orangeGradientNotShaders,
+                                    customStyle().bluePurpleGradientNotShaders,
                                 shadowColor: customStyle()
-                                    .orangeGradientNotShaders
+                                    .bluePurpleGradientNotShaders
                                     .colors
                                     .first
                                     .withOpacity(0.25),

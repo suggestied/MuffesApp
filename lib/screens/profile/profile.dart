@@ -28,7 +28,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   var displayname;
   var username;
-  var posts;
+  var postsCount;
   var biography;
   int myUserId;
   var private;
@@ -64,11 +64,15 @@ class _ProfileState extends State<Profile> {
 
     if (res.statusCode == 200) {
       setState(() {
-        username = body[0]['username'];
-        displayname = body[0]['displayname'];
-        posts = body[0]['post'];
-        biography = body[0]['bio'];
-        private = body[0]['private'];
+        username =
+            body[0]['username'] == null ? "undefined" : body[0]['username'];
+        displayname = body[0]['displayname'] == null
+            ? "undefined"
+            : body[0]['displayname'];
+        postsCount =
+            body[0]['post'] == null ? "undefined" : body[0]['post'].length;
+        biography = body[0]['bio'] == null ? null : body[0]['bio'];
+        private = body[0]['private'] == null ? 1 : body[0]['private'];
       });
     }
   }
@@ -151,7 +155,7 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     Text(
-                      "102",
+                      "?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -171,7 +175,7 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     Text(
-                      "14",
+                      "$postsCount",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -191,7 +195,7 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     Text(
-                      "23",
+                      "?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -221,28 +225,35 @@ class _ProfileState extends State<Profile> {
                         child: ButtonTheme(
                           minWidth: MediaQuery.of(context).size.width / 2.2,
                           height: 50,
-                          child: FlatButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2000)),
-                              child: Text(
-                                'EDIT',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  letterSpacing: 20 / (100 / 25.5),
-                                  color: customStyle().lightColor,
-                                ),
+                          child: GradientButton(
+                            gradient:
+                                customStyle().bluePurpleGradientNotShaders,
+                            shadowColor: customStyle()
+                                .bluePurpleGradientNotShaders
+                                .colors
+                                .first
+                                .withOpacity(0.25),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2000)),
+                            child: Text(
+                              'EDIT',
+                              style: TextStyle(
+                                fontSize: 18,
+                                letterSpacing: 20 / (100 / 25.5),
+                                color: customStyle().lightColor,
                               ),
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              EditProfile(),
-                                      transitionDuration: Duration(seconds: 0),
-                                    ));
-                              },
-                              color: customStyle().primaryColor),
+                            ),
+                            callback: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder:
+                                        (context, animation1, animation2) =>
+                                            EditProfile(),
+                                    transitionDuration: Duration(seconds: 0),
+                                  ));
+                            },
+                          ),
                         ),
                       ),
                       Container(
@@ -283,9 +294,10 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             callback: () {},
-                            gradient: customStyle().orangeGradientNotShaders,
+                            gradient:
+                                customStyle().bluePurpleGradientNotShaders,
                             shadowColor: customStyle()
-                                .orangeGradientNotShaders
+                                .bluePurpleGradientNotShaders
                                 .colors
                                 .first
                                 .withOpacity(0.25),

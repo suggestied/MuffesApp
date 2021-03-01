@@ -106,6 +106,8 @@ class MuffesPost extends StatelessWidget {
                             color: customStyle().secondaryColor,
                             width: MediaQuery.of(context).size.width,
                             child: CachedNetworkImage(
+                                width: MediaQuery.of(context).size.width / 2,
+                                height: MediaQuery.of(context).size.height / 2,
                                 imageUrl:
                                     "https://api.muffes.com/v1/post/$id/$i",
                                 imageBuilder: (context, imageProvider) =>
