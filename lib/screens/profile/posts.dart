@@ -44,6 +44,7 @@ class ProfilePosts extends StatelessWidget {
                   storyWatched: true,
                   files: data[index]['files_count'],
                   token: userToken,
+                  isLikedCount: data[index]['is_liked_count'],
                 );
               })
         ]),

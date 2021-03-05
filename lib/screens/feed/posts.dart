@@ -92,6 +92,8 @@ class _MuffesFeedState extends State<MuffesFeed> {
                               storyWatched: true,
                               files: snapshot.data[index]['files_count'],
                               token: userToken,
+                              isLikedCount: snapshot.data[index]
+                                  ['is_liked_count'],
                             );
                           });
                     } else {

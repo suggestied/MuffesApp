@@ -53,6 +53,14 @@ class MuffesApi {
         body: jsonEncode(data), headers: _setHeaders());
   }
 
+  delData(auth, apiPath, data) async {
+    var fullUrl = _url + apiPath;
+    if (auth) {
+      await _getToken();
+    }
+    return await http.delete(fullUrl, headers: _setHeaders());
+  }
+
   _setHeaders() => {
         'Content-type': 'application/json',
         'Accept': 'application/json',

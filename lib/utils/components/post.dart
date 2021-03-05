@@ -5,7 +5,7 @@ import 'package:muffesapp/utils/colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class MuffesPost extends StatelessWidget {
+class MuffesPost extends StatefulWidget {
   const MuffesPost({
     Key key,
     this.id,
@@ -17,6 +17,7 @@ class MuffesPost extends StatelessWidget {
     this.displayName,
     this.files,
     this.token,
+    this.isLikedCount,
   }) : super(key: key);
 
   final int id;
@@ -28,8 +29,42 @@ class MuffesPost extends StatelessWidget {
   final bool story;
   final files;
   final token;
+  final isLikedCount;
 
   @override
+  _MuffesPostState createState() => _MuffesPostState();
+}
+
+class _MuffesPostState extends State<MuffesPost> {
+  bool liked;
+  Future<dynamic> addLike() {
+    setState(() {
+      liked = true;
+    });
+    return MuffesApi()
+        .putData(true, "/like/post/" + widget.id.toString(), null);
+  }
+
+  Future<dynamic> removeLike() {
+    setState(() {
+      liked = false;
+    });
+    return MuffesApi()
+        .delData(true, "/like/post/" + widget.id.toString(), null);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.isLikedCount == 1
+        ? setState(() {
+            liked = true;
+          })
+        : setState(() {
+            liked = false;
+          });
+  }
+
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -44,10 +79,10 @@ class MuffesPost extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    child: (story == true)
+                    child: (widget.story == true)
                         ? CircleAvatar(
                             radius: 20,
-                            backgroundColor: (storyWatched == true)
+                            backgroundColor: (widget.storyWatched == true)
                                 ? customStyle().primaryColor
                                 : customStyle().disabledColor,
                             child: CircleAvatar(
@@ -55,12 +90,14 @@ class MuffesPost extends StatelessWidget {
                               backgroundColor: customStyle().lightColor,
                               child: CircleAvatar(
                                 radius: 17,
-                                backgroundImage: NetworkImage(profilePicture),
+                                backgroundImage:
+                                    NetworkImage(widget.profilePicture),
                               ),
                             ))
                         : CircleAvatar(
                             radius: 18,
-                            backgroundImage: NetworkImage(profilePicture),
+                            backgroundImage:
+                                NetworkImage(widget.profilePicture),
                           ),
                   ),
                   Padding(
@@ -69,12 +106,12 @@ class MuffesPost extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          username,
+                          widget.username,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                         Text(
-                          displayName,
+                          widget.displayName,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
@@ -98,7 +135,7 @@ class MuffesPost extends StatelessWidget {
                       viewportFraction: 1,
                     ),
                     items: [
-                      for (var i = 0; i < files; i++) i,
+                      for (var i = 0; i < widget.files; i++) i,
                     ].map((i) {
                       return Builder(
                         builder: (BuildContext context) {
@@ -108,8 +145,9 @@ class MuffesPost extends StatelessWidget {
                             child: CachedNetworkImage(
                                 width: MediaQuery.of(context).size.width / 2,
                                 height: MediaQuery.of(context).size.height / 2,
-                                imageUrl:
-                                    "https://api.muffes.com/v1/post/$id/$i",
+                                imageUrl: "https://api.muffes.com/v1/post/" +
+                                    widget.id.toString() +
+                                    "/$i",
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
                                       decoration: BoxDecoration(
@@ -120,7 +158,8 @@ class MuffesPost extends StatelessWidget {
                                       ),
                                     ),
                                 httpHeaders: {
-                                  'Authorization': 'Bearer $token'
+                                  'Authorization':
+                                      'Bearer ' + widget.token.toString()
                                 }),
                           );
                         },
@@ -131,13 +170,27 @@ class MuffesPost extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Icon(
-                      FeatherIcons.heart,
-                      size: 28,
-                    ),
-                  ),
+                  liked
+                      ? Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: IconButton(
+                            icon: Icon(FeatherIcons.heart,
+                                size: 28, color: customStyle().blueColor),
+                            onPressed: () {
+                              removeLike();
+                            },
+                          ),
+                        )
+                      : Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: IconButton(
+                            icon: Icon(FeatherIcons.heart,
+                                size: 28, color: customStyle().darkGrayColor),
+                            onPressed: () {
+                              addLike();
+                            },
+                          ),
+                        ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Icon(
@@ -172,10 +225,10 @@ class MuffesPost extends StatelessWidget {
                         ),
                         children: [
                           TextSpan(
-                            text: username,
+                            text: widget.username,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          TextSpan(text: ' ' + textContent),
+                          TextSpan(text: ' ' + widget.textContent),
                         ]),
                   ))
             ],
