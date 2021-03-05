@@ -122,49 +122,55 @@ class _MuffesPostState extends State<MuffesPost> {
                   ),
                 ],
               ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(13.0),
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      enableInfiniteScroll: false,
-                      autoPlay: false,
-                      initialPage: 0,
-                      aspectRatio: 1,
-                      viewportFraction: 1,
-                    ),
-                    items: [
-                      for (var i = 0; i < widget.files; i++) i,
-                    ].map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                            color: customStyle().secondaryColor,
-                            width: MediaQuery.of(context).size.width,
-                            child: CachedNetworkImage(
-                                width: MediaQuery.of(context).size.width / 2,
-                                height: MediaQuery.of(context).size.height / 2,
-                                imageUrl: "https://api.muffes.com/v1/post/" +
-                                    widget.id.toString() +
-                                    "/$i",
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
+              InkWell(
+                onDoubleTap: () {
+                  addLike();
+                },
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(13.0),
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        enableInfiniteScroll: false,
+                        autoPlay: false,
+                        initialPage: 0,
+                        aspectRatio: 1,
+                        viewportFraction: 1,
+                      ),
+                      items: [
+                        for (var i = 0; i < widget.files; i++) i,
+                      ].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              color: customStyle().secondaryColor,
+                              width: MediaQuery.of(context).size.width,
+                              child: CachedNetworkImage(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  height:
+                                      MediaQuery.of(context).size.height / 2,
+                                  imageUrl: "https://api.muffes.com/v1/post/" +
+                                      widget.id.toString() +
+                                      "/$i",
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                httpHeaders: {
-                                  'Authorization':
-                                      'Bearer ' + widget.token.toString()
-                                }),
-                          );
-                        },
-                      );
-                    }).toList(),
+                                  httpHeaders: {
+                                    'Authorization':
+                                        'Bearer ' + widget.token.toString()
+                                  }),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
