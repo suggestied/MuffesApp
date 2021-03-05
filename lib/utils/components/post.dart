@@ -175,7 +175,7 @@ class _MuffesPostState extends State<MuffesPost> {
                           padding: EdgeInsets.only(right: 10),
                           child: IconButton(
                             icon: Icon(FeatherIcons.heart,
-                                size: 28, color: customStyle().blueColor),
+                                size: 28, color: Colors.red),
                             onPressed: () {
                               removeLike();
                             },
