@@ -1,6 +1,6 @@
 import 'package:muffesapp/screens/feed/feed.dart';
-import 'package:muffesapp/screens/login/login.dart';
 import 'package:flutter/material.dart';
+import 'package:muffesapp/screens/welcome/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckAuth extends StatefulWidget {
@@ -32,7 +32,7 @@ class _CheckAuthState extends State<CheckAuth> {
     if (isAuth) {
       child = Feed();
     } else {
-      child = Login();
+      child = WelcomePage();
     }
     return child;
   }
