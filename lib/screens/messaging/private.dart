@@ -6,79 +6,20 @@ class PrivateChats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Column(
-      children: [
-        ChatComponent(
-          username: "test",
+    return ListView.builder(
+      primary: false,
+      shrinkWrap: true,
+      itemCount: 20,
+      itemBuilder: (context, index) {
+        return ChatComponent(
+          username: "suggestied",
           textContent: "Ewaaa",
           profilePicture: "https://source.unsplash.com/random",
           story: true,
           storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-        ChatComponent(
-          username: "test",
-          textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
-          story: true,
-          storyWatched: true,
-        ),
-      ],
+          newMessages: 0,
+        );
+      },
     );
   }
 }

@@ -19,7 +19,7 @@ class Messaging extends StatelessWidget {
             DefaultTabController(
               length: 2,
               child: SizedBox(
-                height: 1000,
+                height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: <Widget>[
                     TabBar(
@@ -37,7 +37,8 @@ class Messaging extends StatelessWidget {
                       child: TabBarView(
                         children: <Widget>[
                           Container(
-                            color: Colors.green,
+                            height: MediaQuery.of(context).size.height,
+                            child: PrivateChats(),
                           ),
                           Container(
                             color: Colors.yellow,

@@ -32,6 +32,8 @@ class _ProfileState extends State<Profile> {
   var biography;
   int myUserId;
   var private;
+  var followersCount;
+  var followingCount;
 
   @override
   void initState() {
@@ -73,6 +75,12 @@ class _ProfileState extends State<Profile> {
             body[0]['post'] == null ? "undefined" : body[0]['post'].length;
         biography = body[0]['bio'] == null ? null : body[0]['bio'];
         private = body[0]['private'] == null ? 1 : body[0]['private'];
+        followersCount = body[0]['followers_count'] == null
+            ? "undefined"
+            : body[0]['followers_count'];
+        followingCount = body[0]['following_count'] == null
+            ? "undefined"
+            : body[0]['following_count'];
       });
     }
   }
@@ -155,7 +163,7 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     Text(
-                      "?",
+                      "$followersCount",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -195,7 +203,7 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     Text(
-                      "?",
+                      "$followingCount",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
