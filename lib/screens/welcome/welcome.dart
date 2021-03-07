@@ -69,9 +69,9 @@ class WelcomePage extends StatelessWidget {
                           transitionDuration: Duration(seconds: 0),
                         ));
                   },
-                  gradient: customStyle().bluePurpleGradientNotShaders,
+                  gradient: customStyle().orangeRedGradientNotShaders,
                   shadowColor: customStyle()
-                      .bluePurpleGradientNotShaders
+                      .orangeRedGradientNotShaders
                       .colors
                       .first
                       .withOpacity(0.25),

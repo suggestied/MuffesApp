@@ -35,7 +35,7 @@ class PageDesign extends StatelessWidget {
                 style: new TextStyle(
                     fontSize: 36.0,
                     foreground: Paint()
-                      ..shader = customStyle().bluePurpleGradient),
+                      ..shader = customStyle().orangeRedGradient),
               ),
               actions: [
                 actionChildren,

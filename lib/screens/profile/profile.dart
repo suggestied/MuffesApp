@@ -232,10 +232,9 @@ class _ProfileState extends State<Profile> {
                           minWidth: MediaQuery.of(context).size.width / 2.2,
                           height: 50,
                           child: GradientButton(
-                            gradient:
-                                customStyle().bluePurpleGradientNotShaders,
+                            gradient: customStyle().orangeRedGradientNotShaders,
                             shadowColor: customStyle()
-                                .bluePurpleGradientNotShaders
+                                .orangeRedGradientNotShaders
                                 .colors
                                 .first
                                 .withOpacity(0.25),
@@ -300,10 +299,9 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                             callback: () {},
-                            gradient:
-                                customStyle().bluePurpleGradientNotShaders,
+                            gradient: customStyle().orangeRedGradientNotShaders,
                             shadowColor: customStyle()
-                                .bluePurpleGradientNotShaders
+                                .orangeRedGradientNotShaders
                                 .colors
                                 .first
                                 .withOpacity(0.25),

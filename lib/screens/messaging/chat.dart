@@ -79,7 +79,7 @@ class ChatComponent extends StatelessWidget {
               : Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: customStyle().blueColor,
+                    color: customStyle().orangeColor,
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(

@@ -6,14 +6,14 @@ class customStyle {
   final disabledColor = Color.fromRGBO(181, 181, 181, 1);
   final darkGrayColor = Color.fromRGBO(22, 22, 22, 1);
   final lightColor = Color.fromRGBO(250, 250, 250, 1);
-  final blueColor = Color.fromRGBO(246, 115, 86, 1);
+  final orangeColor = Color.fromRGBO(246, 115, 86, 1);
   final kindaLightColor = Color.fromRGBO(232, 232, 232, 1);
 
-  final Shader bluePurpleGradient = LinearGradient(
+  final Shader orangeRedGradient = LinearGradient(
     colors: [Color.fromRGBO(242, 72, 75, 1), Color.fromRGBO(246, 115, 86, 1)],
   ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
-  final bluePurpleGradientNotShaders = LinearGradient(
+  final orangeRedGradientNotShaders = LinearGradient(
       colors: [Color.fromRGBO(242, 72, 75, 1), Color.fromRGBO(246, 115, 86, 1)],
       begin: Alignment.centerLeft,
       end: Alignment.centerRight);
@@ -33,4 +33,4 @@ class customStyle {
 }
 
 MaterialColor primaryColor =
-    MaterialColor(0xFF857bbd, customStyle().primaryColorMaterial);
+    MaterialColor(0xFFf67356, customStyle().primaryColorMaterial);

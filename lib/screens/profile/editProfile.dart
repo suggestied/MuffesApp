@@ -212,9 +212,9 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                           ),
                           callback: () {},
-                          gradient: customStyle().bluePurpleGradientNotShaders,
+                          gradient: customStyle().orangeRedGradientNotShaders,
                           shadowColor: customStyle()
-                              .bluePurpleGradientNotShaders
+                              .orangeRedGradientNotShaders
                               .colors
                               .first
                               .withOpacity(0.25),

@@ -62,8 +62,7 @@ class _LoginState extends State<Login> {
                           alignment: Alignment.bottomCenter,
                           child: GradientText(
                             "PLEASE LOGIN",
-                            gradient:
-                                customStyle().bluePurpleGradientNotShaders,
+                            gradient: customStyle().orangeRedGradientNotShaders,
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -223,9 +222,9 @@ class _LoginState extends State<Login> {
                                               }
                                             },
                                             gradient: customStyle()
-                                                .bluePurpleGradientNotShaders,
+                                                .orangeRedGradientNotShaders,
                                             shadowColor: customStyle()
-                                                .bluePurpleGradientNotShaders
+                                                .orangeRedGradientNotShaders
                                                 .colors
                                                 .first
                                                 .withOpacity(0.25),
