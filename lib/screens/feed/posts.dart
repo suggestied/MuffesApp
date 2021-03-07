@@ -27,9 +27,9 @@ class _MuffesFeedState extends State<MuffesFeed> {
   }
 
   _loadPosts() async {
-    var res = await MuffesApi().getData(true, '/post/feed');
+    var res = await MuffesApi().cacheGetData(true, '/post/feed');
 
-    var body = json.decode(res.body);
+    var body = res.data;
     var _token = await MuffesApi().getToken();
 
     if (res.statusCode == 200) {

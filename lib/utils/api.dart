@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dio/dio.dart';
 
 class MuffesApi {
   final String _url = 'https://api.muffes.com/v1';
@@ -23,8 +26,21 @@ class MuffesApi {
     if (auth) {
       await _getToken();
     }
-    return await http.post(fullUrl,
-        body: jsonEncode(data), headers: _setHeaders());
+    http.post(fullUrl, body: jsonEncode(data), headers: _setHeaders());
+  }
+
+  cacheGetData(auth, apiPath) async {
+    var fullUrl = _url + apiPath;
+    if (auth) {
+      await _getToken();
+    }
+    Response response = await Dio().get(
+      fullUrl,
+      options: buildCacheOptions(Duration(days: 7),
+          options: Options(headers: _setHeaders())),
+    );
+    // print(response.data);
+    return response;
   }
 
   getData(auth, apiPath) async {

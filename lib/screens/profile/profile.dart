@@ -54,35 +54,33 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<List<dynamic>> fetchPosts() async {
-    var resultFuture =
-        await MuffesApi().getData(true, '/user/' + widget.userId.toString());
-    return json.decode(resultFuture.body)[0]['post'];
+    var resultFuture = await MuffesApi()
+        .cacheGetData(true, '/user/' + widget.userId.toString());
+    // print(resultFuture.data[0]['post']);
+    return resultFuture.data[0]['post'];
   }
 
   _loadUserProfile(userId) async {
-    var res = await MuffesApi().getData(true, '/user/$userId');
+    var res = await MuffesApi().cacheGetData(true, '/user/$userId');
 
-    var body = json.decode(res.body);
+    var body = res.data;
 
-    if (res.statusCode == 200) {
-      setState(() {
-        username =
-            body[0]['username'] == null ? "undefined" : body[0]['username'];
-        displayname = body[0]['displayname'] == null
-            ? "undefined"
-            : body[0]['displayname'];
-        postsCount =
-            body[0]['post'] == null ? "undefined" : body[0]['post'].length;
-        biography = body[0]['bio'] == null ? null : body[0]['bio'];
-        private = body[0]['private'] == null ? 1 : body[0]['private'];
-        followersCount = body[0]['followers_count'] == null
-            ? "undefined"
-            : body[0]['followers_count'];
-        followingCount = body[0]['following_count'] == null
-            ? "undefined"
-            : body[0]['following_count'];
-      });
-    }
+    setState(() {
+      username =
+          body[0]['username'] == null ? "undefined" : body[0]['username'];
+      displayname =
+          body[0]['displayname'] == null ? "undefined" : body[0]['displayname'];
+      postsCount =
+          body[0]['post'] == null ? "undefined" : body[0]['post'].length;
+      biography = body[0]['bio'] == null ? null : body[0]['bio'];
+      private = body[0]['private'] == null ? 1 : body[0]['private'];
+      followersCount = body[0]['followers_count'] == null
+          ? "undefined"
+          : body[0]['followers_count'];
+      followingCount = body[0]['following_count'] == null
+          ? "undefined"
+          : body[0]['following_count'];
+    });
   }
 
   @override
