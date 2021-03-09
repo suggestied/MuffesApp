@@ -84,7 +84,7 @@ class _MuffesFeedState extends State<MuffesFeed> {
                               textContent:
                                   snapshot.data[index]['content'].toString(),
                               profilePicture:
-                                  "https://source.unsplash.com/random",
+                                  "https://api.muffes.com/v1/user/avatar/1",
                               displayName: snapshot.data[index]['user']
                                       ['displayname']
                                   .toString(),
@@ -104,22 +104,23 @@ class _MuffesFeedState extends State<MuffesFeed> {
               : Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: 20,
-                      vertical: MediaQuery.of(context).size.height / 7),
+                      vertical: MediaQuery.of(context).size.height / 20),
                   child: Column(
                     children: [
                       RotatedBox(
-                        quarterTurns: 3,
-                        child: Text(
-                          "D:",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 80,
-                          ),
+                        quarterTurns: 2,
+                        child: Center(
+                          child: Image(
+                              height: MediaQuery.of(context).size.height / 2.8,
+                              image: AssetImage(
+                                  'assets/hands/Thumbs_Up_or_Down_L-Angle_A3_0002.png')),
                         ),
                       ),
                       Text(
-                        "Yeah uh there are no posts for you :(",
+                        "Your feed is still completely empty...",
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),

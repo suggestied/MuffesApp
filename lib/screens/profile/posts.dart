@@ -38,7 +38,7 @@ class ProfilePosts extends StatelessWidget {
                   id: data[index]['id'],
                   username: username.toString(),
                   textContent: data[index]['content'].toString(),
-                  profilePicture: "https://source.unsplash.com/random",
+                  profilePicture: "https://api.muffes.com/v1/user/avatar/1",
                   displayName: displayName.toString(),
                   story: true,
                   storyWatched: true,

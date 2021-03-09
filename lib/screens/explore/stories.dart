@@ -29,27 +29,27 @@ class MuffesStoriesExplore extends StatelessWidget {
             children: <Widget>[
               MuffesStory(
                 username: "suggestied",
-                profilePicture: "https://source.unsplash.com/random",
+                profilePicture: "https://api.muffes.com/v1/user/avatar/1",
                 watched: true,
               ),
               MuffesStory(
                 username: "suggestied",
-                profilePicture: "https://source.unsplash.com/random",
+                profilePicture: "https://api.muffes.com/v1/user/avatar/1",
                 watched: false,
               ),
               MuffesStory(
                 username: "suggestied",
-                profilePicture: "https://source.unsplash.com/random",
+                profilePicture: "https://api.muffes.com/v1/user/avatar/1",
                 watched: true,
               ),
               MuffesStory(
                 username: "suggestied",
-                profilePicture: "https://source.unsplash.com/random",
+                profilePicture: "https://api.muffes.com/v1/user/avatar/1",
                 watched: true,
               ),
               MuffesStory(
                 username: "suggestied",
-                profilePicture: "https://source.unsplash.com/random",
+                profilePicture: "https://api.muffes.com/v1/user/avatar/1",
                 watched: true,
               ),
             ],

@@ -16,7 +16,7 @@ class Story extends StatelessWidget {
               width: double.infinity,
               child: FittedBox(
                 child: Image.network(
-                  "https://source.unsplash.com/random",
+                  "https://api.muffes.com/v1/user/avatar/1",
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
@@ -43,7 +43,7 @@ class Story extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 22,
                         backgroundImage: NetworkImage(
-                          "https://source.unsplash.com/random",
+                          "https://api.muffes.com/v1/user/avatar/1",
                         ),
                       ),
                     ),

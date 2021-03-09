@@ -327,7 +327,7 @@ class _RegisterState extends State<Register> {
         new MaterialPageRoute(builder: (context) => Feed()),
       );
     } else {
-      _showMsg(body['message']);
+      _showMsg(body);
     }
 
     setState(() {

@@ -14,7 +14,7 @@ class PrivateChats extends StatelessWidget {
         return ChatComponent(
           username: "suggestied",
           textContent: "Ewaaa",
-          profilePicture: "https://source.unsplash.com/random",
+          profilePicture: "https://api.muffes.com/v1/user/avatar/1",
           story: true,
           storyWatched: true,
           newMessages: 0,

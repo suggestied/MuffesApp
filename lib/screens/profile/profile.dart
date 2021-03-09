@@ -103,7 +103,7 @@ class _ProfileState extends State<Profile> {
                 child: CircleAvatar(
                   radius: 60,
                   backgroundImage:
-                      NetworkImage("https://source.unsplash.com/random"),
+                      NetworkImage("https://api.muffes.com/v1/user/avatar/1"),
                 ),
               ),
             ),
@@ -395,7 +395,7 @@ class _ProfileState extends State<Profile> {
                     //         textContent:
                     //             snapshot.data[index]['content'].toString(),
                     //         profilePicture:
-                    //             "https://source.unsplash.com/random",
+                    //             "https://api.muffes.com/v1/user/avatar/1",
                     //         displayName: snapshot.data[index]['user']
                     //                 ['displayname']
                     //             .toString(),

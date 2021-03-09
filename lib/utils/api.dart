@@ -26,7 +26,8 @@ class MuffesApi {
     if (auth) {
       await _getToken();
     }
-    http.post(fullUrl, body: jsonEncode(data), headers: _setHeaders());
+    return await http.post(fullUrl,
+        body: jsonEncode(data), headers: _setHeaders());
   }
 
   cacheGetData(auth, apiPath) async {
