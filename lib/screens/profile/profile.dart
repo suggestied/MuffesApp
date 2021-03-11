@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:muffesapp/screens/profile/editProfile.dart';
+import 'package:muffesapp/screens/profile/edit/editProfile.dart';
 import 'package:muffesapp/screens/profile/posts.dart';
 import 'package:muffesapp/utils/api.dart';
 import 'package:muffesapp/utils/colors.dart';
