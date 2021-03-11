@@ -29,7 +29,7 @@ class WelcomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Muffes",
+                    "Welcome.",
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Ja idk wth ik hier ga neerzetten maarja dat komt nog wel.",
+                    "Welcome to Muffes,\nplease register an account or login to your existing account..",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,

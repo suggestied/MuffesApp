@@ -336,80 +336,85 @@ class _ProfileState extends State<Profile> {
                 right: 8,
                 top: 20,
               ),
-              child: FutureBuilder<List>(
-                future: fetchPosts(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return StaggeredGridView.countBuilder(
-                      primary: false,
-                      shrinkWrap: true,
-                      crossAxisCount: 3,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) => Center(
-                          child: Container(
-                        height: double.infinity,
-                        width: double.infinity,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(13.0),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              ProfilePosts(
-                                        data: snapshot.data,
-                                        userToken: widget.token,
-                                        displayName: displayname,
-                                        username: username,
-                                      ),
-                                      transitionDuration: Duration(seconds: 0),
-                                    ));
-                              },
-                              child: CachedNetworkImage(
-                                  imageUrl: "https://api.muffes.com/v1/post/" +
-                                      (index + 1).toString() +
-                                      "/0",
-                                  fit: BoxFit.cover,
-                                  httpHeaders: {
-                                    'Authorization': 'Bearer ' + widget.token
-                                  }),
+              child: postsCount == 0
+                  ? Column(
+                      children: [
+                        RotatedBox(
+                          quarterTurns: 2,
+                          child: Center(
+                            child: Image(
+                                height:
+                                    MediaQuery.of(context).size.height / 4.8,
+                                image: AssetImage(
+                                    'assets/hands/Thumbs_Up_or_Down_L-Angle_A3_0002.png')),
+                          ),
+                        ),
+                        Text(
+                          "$username has no posts..",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    )
+                  : FutureBuilder<List>(
+                      future: fetchPosts(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData) {
+                          return StaggeredGridView.countBuilder(
+                            primary: false,
+                            shrinkWrap: true,
+                            crossAxisCount: 3,
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) => Center(
+                                child: Container(
+                              height: double.infinity,
+                              width: double.infinity,
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(13.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          PageRouteBuilder(
+                                            pageBuilder: (context, animation1,
+                                                    animation2) =>
+                                                ProfilePosts(
+                                              data: snapshot.data,
+                                              userToken: widget.token,
+                                              displayName: displayname,
+                                              username: username,
+                                            ),
+                                            transitionDuration:
+                                                Duration(seconds: 0),
+                                          ));
+                                    },
+                                    child: CachedNetworkImage(
+                                        imageUrl:
+                                            "https://api.muffes.com/v1/post/" +
+                                                (index + 1).toString() +
+                                                "/0",
+                                        fit: BoxFit.cover,
+                                        httpHeaders: {
+                                          'Authorization':
+                                              'Bearer ' + widget.token
+                                        }),
+                                  )),
                             )),
-                      )),
-                      staggeredTileBuilder: (index) => StaggeredTile.count(
-                          (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1),
-                      mainAxisSpacing: 8.0,
-                      crossAxisSpacing: 8.0,
-                    );
-                    // return ListView.builder(
-                    //     primary: false,
-                    //     shrinkWrap: true,
-                    //     padding: EdgeInsets.all(8),
-                    //     itemCount: snapshot.data.length,
-                    //     itemBuilder: (BuildContext context, int index) {
-                    //       return MuffesPost(
-                    //         id: snapshot.data[index]['id'],
-                    //         username: snapshot.data[index]['user']['username']
-                    //             .toString(),
-                    //         textContent:
-                    //             snapshot.data[index]['content'].toString(),
-                    //         profilePicture:
-                    //             "https://api.muffes.com/v1/user/avatar/1",
-                    //         displayName: snapshot.data[index]['user']
-                    //                 ['displayname']
-                    //             .toString(),
-                    //         story: true,
-                    //         storyWatched: true,
-                    //         files: snapshot.data[index]['files_count'],
-                    //         token: userToken,
-                    //       );
-                    //     });
-                  } else {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                },
-              )),
+                            staggeredTileBuilder: (index) =>
+                                StaggeredTile.count((index % 7 == 0) ? 2 : 1,
+                                    (index % 7 == 0) ? 2 : 1),
+                            mainAxisSpacing: 8.0,
+                            crossAxisSpacing: 8.0,
+                          );
+                        } else {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                      },
+                    )),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 7,
+          )
         ]),
       ),
     );

@@ -15,8 +15,8 @@ class customStyle {
 
   final orangeRedGradientNotShaders = LinearGradient(
       colors: [Color.fromRGBO(242, 72, 75, 1), Color.fromRGBO(246, 115, 86, 1)],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight);
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight);
 
   Map<int, Color> primaryColorMaterial = {
     50: Color.fromRGBO(246, 115, 86, .1),

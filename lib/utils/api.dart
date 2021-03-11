@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 class MuffesApi {
   final String _url = 'https://api.muffes.com/v1';
+  DioCacheManager _dioCacheManager;
 
   var token;
   int userId;
@@ -31,14 +32,20 @@ class MuffesApi {
   }
 
   cacheGetData(auth, apiPath) async {
+    _dioCacheManager = DioCacheManager(CacheConfig());
+
+    Dio _dio = Dio();
+    _dio.interceptors.add(_dioCacheManager.interceptor);
     var fullUrl = _url + apiPath;
     if (auth) {
       await _getToken();
     }
-    Response response = await Dio().get(
+    Response response = await _dio.get(
       fullUrl,
-      options: buildCacheOptions(Duration(days: 7),
-          options: Options(headers: _setHeaders())),
+      options: buildCacheOptions(
+        Duration(days: 7),
+        options: Options(headers: _setHeaders()),
+      ),
     );
     // print(response.data);
     return response;

@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:muffesapp/utils/components/page.dart';
-import 'dart:io';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
-class newPost extends StatelessWidget {
-  const newPost({Key key}) : super(key: key);
+class newPost extends StatefulWidget {
+  newPost({Key key}) : super(key: key);
 
+  @override
+  _newPostState createState() => _newPostState();
+}
+
+class _newPostState extends State<newPost> {
   @override
   Widget build(BuildContext context) {
     return PageDesign(
       withSafeTop: true,
-      withAppBar: false,
-      children: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Text("test"),
-        ]),
-      ),
-      pageTitle: "newPost",
+      withAppBar: true,
+      children: Text("test"),
+      pageTitle: "New post",
       actionChildren: Container(),
     );
   }
