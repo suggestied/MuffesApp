@@ -111,7 +111,7 @@ class _MuffesFeedState extends State<MuffesFeed> {
                         quarterTurns: 2,
                         child: Center(
                           child: Image(
-                              height: MediaQuery.of(context).size.height / 2.8,
+                              height: MediaQuery.of(context).size.height / 3.2,
                               image: AssetImage(
                                   'assets/hands/Thumbs_Up_or_Down_L-Angle_A3_0002.png')),
                         ),
