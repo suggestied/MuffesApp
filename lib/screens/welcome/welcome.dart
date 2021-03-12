@@ -18,7 +18,7 @@ class WelcomePage extends StatelessWidget {
               child: RotationTransition(
                 turns: new AlwaysStoppedAnimation(350 / 360),
                 child: Image(
-                    height: MediaQuery.of(context).size.height / 2.8,
+                    height: MediaQuery.of(context).size.height / 4.8,
                     image: AssetImage(
                         'assets/hands/Flat_Palm_Spread_L-Angle_A5_0002.png')),
               ),
@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                   Text(
                     "Welcome.",
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 34,
                       fontWeight: FontWeight.bold,
                       color: customStyle().darkGrayColor,
                     ),

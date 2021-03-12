@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:muffesapp/screens/app.dart';
 import 'package:muffesapp/screens/feed/feed.dart';
 import 'package:muffesapp/screens/login/login.dart';
 import 'package:muffesapp/utils/api.dart';
@@ -324,7 +325,7 @@ class _RegisterState extends State<Register> {
       localStorage.setString('user', json.encode(body['user']));
       Navigator.pushReplacement(
         context,
-        new MaterialPageRoute(builder: (context) => Feed()),
+        new MaterialPageRoute(builder: (context) => CheckAuth()),
       );
     } else {
       _showMsg(body);
