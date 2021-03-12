@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:muffesapp/screens/profile/edit/setting.dart';
+import 'package:muffesapp/screens/profile/edit/your_account/yourAccount.dart';
 import 'package:muffesapp/screens/profile/profile.dart';
 import 'package:muffesapp/utils/api.dart';
 import 'package:muffesapp/utils/colors.dart';
@@ -73,20 +74,29 @@ class _EditProfileState extends State<EditProfile> {
         child: Column(
           children: [
             SettingsTo(
-              name: "Privacy",
-              icon: FeatherIcons.eye,
+              name: "Your account",
+              icon: FeatherIcons.user,
+              to: yourAccount(),
+            ),
+            SettingsTo(
+              name: "Security",
+              icon: FeatherIcons.lock,
+              to: yourAccount(),
+            ),
+            SettingsTo(
+              name: "Notifications",
+              icon: FeatherIcons.bell,
+              to: yourAccount(),
             ),
             SettingsTo(
               name: "Privacy",
               icon: FeatherIcons.eye,
+              to: yourAccount(),
             ),
             SettingsTo(
-              name: "Privacy",
-              icon: FeatherIcons.eye,
-            ),
-            SettingsTo(
-              name: "Privacy",
-              icon: FeatherIcons.eye,
+              name: "Display",
+              icon: FeatherIcons.columns,
+              to: yourAccount(),
             ),
           ],
         ),

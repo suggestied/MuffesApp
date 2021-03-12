@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class customStyle {
   final primaryColor = Color.fromRGBO(242, 72, 75, 1);
   final secondaryColor = Color.fromRGBO(246, 246, 246, 1);
+  final greenColor = Color.fromRGBO(27, 204, 106, 1);
   final disabledColor = Color.fromRGBO(181, 181, 181, 1);
   final darkGrayColor = Color.fromRGBO(22, 22, 22, 1);
   final lightColor = Color.fromRGBO(250, 250, 250, 1);
