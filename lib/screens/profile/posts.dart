@@ -1,10 +1,13 @@
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:muffesapp/ad_state.dart';
 import 'package:muffesapp/utils/colors.dart';
 import 'package:muffesapp/utils/components/bottomNavBar.dart';
 import 'package:muffesapp/utils/components/page.dart';
 import 'package:muffesapp/utils/components/post.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ProfilePosts extends StatelessWidget {
+class ProfilePosts extends StatefulWidget {
   const ProfilePosts({
     Key key,
     this.data,
@@ -21,6 +24,35 @@ class ProfilePosts extends StatelessWidget {
   final displayName;
 
   @override
+  _ProfilePostsState createState() => _ProfilePostsState();
+}
+
+class _ProfilePostsState extends State<ProfilePosts> {
+  BannerAd bannerPostAd;
+  List<Object> postList;
+
+  @override
+  void initState() {
+    super.initState();
+    postList = List.from(widget.data[0]);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+    adState.initialization.then((value) => {
+          setState(() {
+            bannerPostAd = BannerAd(
+              size: AdSize.mediumRectangle,
+              adUnitId: adState.adUnitId,
+              listener: adState.adListener,
+              request: AdRequest(),
+            )..load();
+          })
+        });
+  }
+
   Widget build(BuildContext context) {
     return PageDesign(
       withSafeTop: true,
@@ -31,25 +63,25 @@ class ProfilePosts extends StatelessWidget {
           ListView.builder(
               primary: false,
               shrinkWrap: true,
-              itemCount: data.length,
+              itemCount: widget.data.length,
               itemBuilder: (BuildContext context, int index) {
-                print(data[0]);
+                print(widget.data[0]);
                 return MuffesPost(
-                  id: data[index]['id'],
-                  username: username.toString(),
-                  textContent: data[index]['content'].toString(),
+                  id: widget.data[index]['id'],
+                  username: widget.username.toString(),
+                  textContent: widget.data[index]['content'].toString(),
                   profilePicture: "https://api.muffes.com/v1/user/avatar/1",
-                  displayName: displayName.toString(),
+                  displayName: widget.displayName.toString(),
                   story: true,
                   storyWatched: true,
-                  files: data[index]['files_count'],
-                  token: userToken,
-                  isLikedCount: data[index]['is_liked_count'],
+                  files: widget.data[index]['files_count'],
+                  token: widget.userToken,
+                  isLikedCount: widget.data[index]['is_liked_count'],
                 );
               })
         ]),
       ),
-      pageTitle: "$username's posts",
+      pageTitle: "${widget.username}'s posts",
       actionChildren: Container(),
     );
   }

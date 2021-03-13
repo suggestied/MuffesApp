@@ -35,6 +35,8 @@ dependencies:
   cached_network_image: ^2.5.0
   dio_http_cache: ^0.2.11
   dio: ^3.0.10
+  google_mobile_ads: ^0.11.0+3
+  provider: ^5.0.0
 
   
 
