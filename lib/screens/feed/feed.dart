@@ -19,12 +19,18 @@ class Feed extends StatelessWidget {
         ]),
       ),
       pageTitle: "Feed",
-      actionChildren: IconButton(
-          icon: Icon(
-            FeatherIcons.bell,
-            color: customStyle().darkGrayColor,
-          ),
-          onPressed: () {}),
+      actionChildren: Container(
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        child: CircleAvatar(
+          backgroundColor: customStyle().kindaLightColor,
+          child: IconButton(
+              icon: Icon(
+                FeatherIcons.bell,
+                color: Colors.grey[600],
+              ),
+              onPressed: () {}),
+        ),
+      ),
     );
   }
 }

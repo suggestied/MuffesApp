@@ -54,7 +54,18 @@ class Messaging extends StatelessWidget {
         ),
       ),
       pageTitle: "Chats",
-      actionChildren: Container(),
+      actionChildren: Container(
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        child: CircleAvatar(
+          backgroundColor: customStyle().kindaLightColor,
+          child: IconButton(
+              icon: Icon(
+                FeatherIcons.messageCircle,
+                color: Colors.grey[600],
+              ),
+              onPressed: () {}),
+        ),
+      ),
     );
   }
 }
