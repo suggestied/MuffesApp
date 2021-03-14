@@ -412,9 +412,6 @@ class _ProfileState extends State<Profile> {
                         }
                       },
                     )),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 7,
-          )
         ]),
       ),
     );

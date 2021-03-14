@@ -7,6 +7,7 @@ class customStyle {
   final disabledColor = Color.fromRGBO(181, 181, 181, 1);
   final darkGrayColor = Color.fromRGBO(22, 22, 22, 1);
   final lightColor = Color.fromRGBO(250, 250, 250, 1);
+
   final orangeColor = Color.fromRGBO(246, 115, 86, 1);
   final kindaLightColor = Color.fromRGBO(232, 232, 232, 1);
 

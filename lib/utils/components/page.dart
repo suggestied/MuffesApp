@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:muffesapp/screens/profile/profile.dart';
@@ -96,7 +97,7 @@ class _PageDesignState extends State<PageDesign> {
               title: Text(
                 widget.pageTitle,
                 style: new TextStyle(
-                  fontSize: 25.0,
+                  fontSize: 28.0,
                   foreground: Paint()..shader = customStyle().orangeRedGradient,
                 ),
               ),
