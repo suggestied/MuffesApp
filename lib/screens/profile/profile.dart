@@ -35,6 +35,7 @@ class _ProfileState extends State<Profile> {
   var followersCount;
   var followingCount;
   var posts;
+  var following = true;
 
   @override
   void initState() {
@@ -52,6 +53,28 @@ class _ProfileState extends State<Profile> {
         myUserId = user['id'];
       });
     }
+  }
+
+  follow(userId) async {
+    var response = await MuffesApi()
+        .postData(true, "/follow/user/" + userId.toString(), {});
+    print(json.decode(response.body).toString());
+    if (response.statusCode == 200) {
+      setState(() {
+        following = true;
+        followersCount++;
+      });
+    }
+  }
+
+  unfollow(userId) async {
+    var response = await MuffesApi()
+        .delData(true, "/follow/user/" + userId.toString(), {});
+    print(json.decode(response.body).toString());
+    setState(() {
+      following = false;
+      followersCount--;
+    });
   }
 
   Future<List<dynamic>> fetchPosts() async {
@@ -292,22 +315,45 @@ class _ProfileState extends State<Profile> {
                         child: ButtonTheme(
                           minWidth: MediaQuery.of(context).size.width / 2.2,
                           height: 50,
-                          child: GradientButton(
-                            child: Text(
-                              "FOLLOW",
-                              style: TextStyle(
-                                fontSize: 18,
-                                letterSpacing: 20 / (100 / 25.5),
-                              ),
-                            ),
-                            callback: () {},
-                            gradient: customStyle().orangeRedGradientNotShaders,
-                            shadowColor: customStyle()
-                                .orangeRedGradientNotShaders
-                                .colors
-                                .first
-                                .withOpacity(0.25),
-                          ),
+                          child: following
+                              ? GradientButton(
+                                  child: Text(
+                                    "UNFOLLOW",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      letterSpacing: 20 / (100 / 25.5),
+                                    ),
+                                  ),
+                                  callback: () {
+                                    unfollow(widget.userId);
+                                  },
+                                  gradient:
+                                      customStyle().orangeRedGradientNotShaders,
+                                  shadowColor: customStyle()
+                                      .orangeRedGradientNotShaders
+                                      .colors
+                                      .first
+                                      .withOpacity(0.25),
+                                )
+                              : GradientButton(
+                                  child: Text(
+                                    "FOLLOW",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      letterSpacing: 20 / (100 / 25.5),
+                                    ),
+                                  ),
+                                  callback: () {
+                                    follow(widget.userId);
+                                  },
+                                  gradient:
+                                      customStyle().orangeRedGradientNotShaders,
+                                  shadowColor: customStyle()
+                                      .orangeRedGradientNotShaders
+                                      .colors
+                                      .first
+                                      .withOpacity(0.25),
+                                ),
                         ),
                       ),
                       Container(
