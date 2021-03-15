@@ -44,6 +44,7 @@ class MuffesApi {
       fullUrl,
       options: buildCacheOptions(
         Duration(days: 7),
+        forceRefresh: true,
         options: Options(headers: _setHeaders()),
       ),
     );

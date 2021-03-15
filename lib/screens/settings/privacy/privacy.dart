@@ -22,25 +22,39 @@ class PrivacySettings extends StatefulWidget {
 class _PrivacySettingsState extends State<PrivacySettings> {
   int myUserId;
   var userToken;
-  var privateAccount = false;
+  var privateAccount;
+  var data;
 
   @override
-  void initState() {
-    _loadUserId();
-    super.initState();
-  }
-
-  _loadUserId() async {
+  _loadUser() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var user = jsonDecode(localStorage.getString('user'));
+    var response =
+        await MuffesApi().cacheGetData(true, "/user/" + user['id'].toString());
+
     var _token = await MuffesApi().getToken();
 
     if (user != null) {
       setState(() {
         myUserId = user['id'];
+        privateAccount = response.data[0]['private'];
         userToken = _token;
       });
     }
+  }
+
+  void initState() {
+    _loadUser();
+
+    super.initState();
+  }
+
+  changePrivate(private) async {
+    data = {
+      'private': private,
+    };
+    var response = await MuffesApi().patchData(true, "/user", data);
+    return response;
   }
 
   @override
@@ -109,11 +123,16 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                       ],
                     ),
                     Switch(
-                      value: privateAccount,
+                      value: privateAccount != 0 ? true : false,
                       onChanged: (value) {
                         setState(() {
-                          privateAccount = value;
+                          if (value == true) {
+                            privateAccount = 1;
+                          } else {
+                            privateAccount = 0;
+                          }
                         });
+                        changePrivate(privateAccount);
                       },
                       activeTrackColor: primaryColor,
                       activeColor: primaryColor[700],

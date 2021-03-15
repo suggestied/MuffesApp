@@ -98,6 +98,7 @@ class _PageDesignState extends State<PageDesign> {
                 widget.pageTitle,
                 style: new TextStyle(
                   fontSize: 28.0,
+                  // color: primaryColor,
                   foreground: Paint()..shader = customStyle().orangeRedGradient,
                 ),
               ),

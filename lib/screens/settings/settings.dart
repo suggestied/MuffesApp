@@ -22,6 +22,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   int myUserId;
   var userToken;
+  bool private;
 
   @override
   void initState() {
@@ -38,6 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
       setState(() {
         myUserId = user['id'];
         userToken = _token;
+        private = user['private'] == 1 ? true : false;
       });
     }
   }
