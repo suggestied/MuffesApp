@@ -42,7 +42,7 @@ class Explore extends StatelessWidget {
                       username: "suggestied",
                       displayname: "suggestied",
                       profilePicture: "https://api.muffes.com/v1/user/avatar/1",
-                      id: 1,
+                      id: 2,
                     ),
                   );
                 },

@@ -1,3 +1,4 @@
+import 'package:muffesapp/screens/profile/profile.dart';
 import 'package:muffesapp/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -18,10 +19,12 @@ class MuffesPost extends StatefulWidget {
     this.files,
     this.token,
     this.isLikedCount,
+    this.userId,
   }) : super(key: key);
 
   final int id;
   final String username;
+  final int userId;
   final String textContent;
   final String profilePicture;
   final String displayName;
@@ -100,26 +103,41 @@ class _MuffesPostState extends State<MuffesPost> {
                                 NetworkImage(widget.profilePicture),
                           ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.username,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) =>
+                              Profile(
+                            userId: widget.userId,
+                            token: widget.token,
+                          ),
+                          transitionDuration: Duration(seconds: 0),
                         ),
-                        Text(
-                          widget.displayName,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                              color: customStyle().disabledColor),
-                        )
-                      ],
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.username,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 14),
+                          ),
+                          Text(
+                            widget.displayName,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: customStyle().disabledColor),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
               InkWell(

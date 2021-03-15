@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:muffesapp/screens/profile/edit/setting.dart';
-import 'package:muffesapp/screens/profile/edit/your_account/yourAccount.dart';
+import 'package:muffesapp/screens/settings/privacy/privacy.dart';
+import 'package:muffesapp/screens/settings/setting.dart';
+import 'package:muffesapp/screens/settings/your_account/yourAccount.dart';
 import 'package:muffesapp/screens/profile/profile.dart';
 import 'package:muffesapp/utils/api.dart';
 import 'package:muffesapp/utils/colors.dart';
@@ -11,14 +12,14 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class EditProfile extends StatefulWidget {
-  EditProfile({Key key}) : super(key: key);
+class SettingsPage extends StatefulWidget {
+  SettingsPage({Key key}) : super(key: key);
 
   @override
-  _EditProfileState createState() => _EditProfileState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class _SettingsPageState extends State<SettingsPage> {
   int myUserId;
   var userToken;
 
@@ -91,7 +92,7 @@ class _EditProfileState extends State<EditProfile> {
             SettingsTo(
               name: "Privacy",
               icon: FeatherIcons.eye,
-              to: yourAccount(),
+              to: PrivacySettings(),
             ),
             SettingsTo(
               name: "Display",

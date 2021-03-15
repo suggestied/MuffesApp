@@ -1,0 +1,128 @@
+import 'dart:convert';
+
+import 'package:muffesapp/screens/settings/setting.dart';
+import 'package:muffesapp/screens/settings/settings.dart';
+import 'package:muffesapp/screens/settings/your_account/yourAccount.dart';
+import 'package:muffesapp/screens/profile/profile.dart';
+import 'package:muffesapp/utils/api.dart';
+import 'package:muffesapp/utils/colors.dart';
+import 'package:muffesapp/utils/components/page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class PrivacySettings extends StatefulWidget {
+  PrivacySettings({Key key}) : super(key: key);
+
+  @override
+  _PrivacySettingsState createState() => _PrivacySettingsState();
+}
+
+class _PrivacySettingsState extends State<PrivacySettings> {
+  int myUserId;
+  var userToken;
+  var privateAccount = false;
+
+  @override
+  void initState() {
+    _loadUserId();
+    super.initState();
+  }
+
+  _loadUserId() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var user = jsonDecode(localStorage.getString('user'));
+    var _token = await MuffesApi().getToken();
+
+    if (user != null) {
+      setState(() {
+        myUserId = user['id'];
+        userToken = _token;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: customStyle().lightColor,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Privacy",
+          style: TextStyle(color: customStyle().darkGrayColor),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    SettingsPage(),
+                transitionDuration: Duration(seconds: 0),
+              ),
+            );
+          },
+          icon:
+              Icon(FeatherIcons.arrowLeft, color: customStyle().darkGrayColor),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                "PRIVATE ACCOUNT",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                    color: Colors.grey[800]),
+              ),
+            ),
+            Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: customStyle().lightColor,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.05),
+                        offset: Offset(0, 7),
+                        blurRadius: 19)
+                  ],
+                ),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Private account",
+                          style: TextStyle(fontSize: 20),
+                        )
+                      ],
+                    ),
+                    Switch(
+                      value: privateAccount,
+                      onChanged: (value) {
+                        setState(() {
+                          privateAccount = value;
+                        });
+                      },
+                      activeTrackColor: primaryColor,
+                      activeColor: primaryColor[700],
+                    ),
+                  ],
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -86,7 +86,7 @@ class customBottomNavBarState extends State<customBottomNavBar> {
         );
         break;
       case 4:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Profile(

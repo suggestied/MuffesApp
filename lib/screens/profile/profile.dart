@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:muffesapp/screens/profile/edit/editProfile.dart';
+import 'package:muffesapp/screens/settings/settings.dart';
 import 'package:muffesapp/screens/profile/posts.dart';
 import 'package:muffesapp/utils/api.dart';
 import 'package:muffesapp/utils/colors.dart';
@@ -34,6 +34,7 @@ class _ProfileState extends State<Profile> {
   var private;
   var followersCount;
   var followingCount;
+  var posts;
 
   @override
   void initState() {
@@ -66,12 +67,13 @@ class _ProfileState extends State<Profile> {
     var body = res.data;
 
     setState(() {
+      posts = body[0]['posts'];
       username =
           body[0]['username'] == null ? "undefined" : body[0]['username'];
       displayname =
           body[0]['displayname'] == null ? "undefined" : body[0]['displayname'];
       postsCount =
-          body[0]['post'] == null ? "undefined" : body[0]['post'].length;
+          body[0]['post_count'] == null ? "undefined" : body[0]['post_count'];
       biography = body[0]['bio'] == null ? null : body[0]['bio'];
       private = body[0]['private'] == null ? 1 : body[0]['private'];
       followersCount = body[0]['followers_count'] == null
@@ -254,7 +256,7 @@ class _ProfileState extends State<Profile> {
                                   PageRouteBuilder(
                                     pageBuilder:
                                         (context, animation1, animation2) =>
-                                            EditProfile(),
+                                            SettingsPage(),
                                     transitionDuration: Duration(seconds: 0),
                                   ));
                             },
@@ -337,26 +339,47 @@ class _ProfileState extends State<Profile> {
                 top: 20,
               ),
               child: postsCount == 0
-                  ? Column(
-                      children: [
-                        RotatedBox(
-                          quarterTurns: 2,
-                          child: Center(
-                            child: Image(
-                                height:
-                                    MediaQuery.of(context).size.height / 4.8,
-                                image: AssetImage(
-                                    'assets/hands/Thumbs_Up_or_Down_L-Angle_A3_0002.png')),
-                          ),
-                        ),
-                        Text(
-                          "$username has no posts..",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    )
+                  ? posts == null
+                      ? Column(
+                          children: [
+                            RotatedBox(
+                              quarterTurns: 2,
+                              child: Center(
+                                child: Image(
+                                    height: MediaQuery.of(context).size.height /
+                                        4.8,
+                                    image: AssetImage(
+                                        'assets/hands/Thumbs_Up_or_Down_L-Angle_A3_0002.png')),
+                              ),
+                            ),
+                            Text(
+                              "$username has a private account..",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            RotatedBox(
+                              quarterTurns: 2,
+                              child: Center(
+                                child: Image(
+                                    height: MediaQuery.of(context).size.height /
+                                        4.8,
+                                    image: AssetImage(
+                                        'assets/hands/Thumbs_Up_or_Down_L-Angle_A3_0002.png')),
+                              ),
+                            ),
+                            Text(
+                              "$username has no posts..",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
                   : FutureBuilder<List>(
                       future: fetchPosts(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {

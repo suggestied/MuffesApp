@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:muffesapp/screens/profile/edit/editProfile.dart';
+import 'package:muffesapp/screens/settings/settings.dart';
 import 'package:muffesapp/utils/colors.dart';
 
 class yourAccount extends StatelessWidget {
@@ -21,7 +21,8 @@ class yourAccount extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) => EditProfile(),
+                pageBuilder: (context, animation1, animation2) =>
+                    SettingsPage(),
                 transitionDuration: Duration(seconds: 0),
               ),
             );

@@ -33,7 +33,6 @@ class ProfilePosts extends StatelessWidget {
               shrinkWrap: true,
               itemCount: data.length,
               itemBuilder: (BuildContext context, int index) {
-                print(data[0]);
                 return MuffesPost(
                   id: data[index]['id'],
                   username: username.toString(),
@@ -45,6 +44,7 @@ class ProfilePosts extends StatelessWidget {
                   files: data[index]['files_count'],
                   token: userToken,
                   isLikedCount: data[index]['is_liked_count'],
+                  userId: data[index]['user']['id'],
                 );
               })
         ]),

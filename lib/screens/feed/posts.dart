@@ -92,6 +92,7 @@ class _MuffesFeedState extends State<MuffesFeed> {
                               storyWatched: true,
                               files: snapshot.data[index]['files_count'],
                               token: userToken,
+                              userId: snapshot.data[index]['user']['id'],
                               isLikedCount: snapshot.data[index]
                                   ['is_liked_count'],
                             );
