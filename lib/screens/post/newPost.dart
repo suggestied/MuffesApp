@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:http/http.dart';
 import 'package:muffesapp/utils/api.dart';
 import 'package:muffesapp/utils/colors.dart';
 import 'package:muffesapp/utils/components/page.dart';
@@ -20,9 +21,7 @@ class _newPostState extends State<newPost> {
   var description;
 
   post() async {
-    var data = {
-      'content': description,
-    };
+    var data = {'content': description, "files": []};
     var response =
         await MuffesApi().multipartPostData(true, "/post", data, files);
     print(response);

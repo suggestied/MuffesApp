@@ -93,21 +93,14 @@ class MuffesApi {
     }
 
     var formData = FormData.fromMap(data);
-    for (var file in files) {
-      if (file != null) {
-        print(file);
-        formData.files.addAll([
-          MapEntry("files[]", await MultipartFile.fromFile(file)),
-        ]);
-      }
-    }
+    print("data:" + data.toString());
     var response = await Dio().post(
       fullUrl,
       data: formData,
       options: Options(headers: _setHeaders()),
     );
-    print(response);
-    return response;
+    print(response.data);
+    return response.data;
   }
 
   _setHeaders() => {
