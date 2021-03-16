@@ -487,6 +487,7 @@ class _ProfileState extends State<Profile> {
                                               userToken: widget.token,
                                               displayName: displayname,
                                               username: username,
+                                              userId: widget.userId,
                                             ),
                                             transitionDuration:
                                                 Duration(seconds: 0),
