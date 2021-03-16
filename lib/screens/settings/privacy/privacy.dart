@@ -37,7 +37,7 @@ class _PrivacySettingsState extends State<PrivacySettings> {
     if (user != null) {
       setState(() {
         myUserId = user['id'];
-        privateAccount = response.data[0]['private'];
+        privateAccount = response.data['data']['private'];
         userToken = _token;
       });
     }
@@ -134,6 +134,48 @@ class _PrivacySettingsState extends State<PrivacySettings> {
                         });
                         changePrivate(privateAccount);
                       },
+                      activeTrackColor: primaryColor,
+                      activeColor: primaryColor[700],
+                    ),
+                  ],
+                )),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                "TARGETED POSTS (ON EXPLORE PAGE)",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                    color: Colors.grey[800]),
+              ),
+            ),
+            Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: customStyle().lightColor,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.05),
+                        offset: Offset(0, 7),
+                        blurRadius: 19)
+                  ],
+                ),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Targeted posts",
+                          style: TextStyle(fontSize: 20),
+                        )
+                      ],
+                    ),
+                    Switch(
+                      value: true,
+                      onChanged: (value) {},
                       activeTrackColor: primaryColor,
                       activeColor: primaryColor[700],
                     ),

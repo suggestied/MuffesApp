@@ -35,7 +35,8 @@ class _ProfileState extends State<Profile> {
   var followersCount;
   var followingCount;
   var posts;
-  var following = true;
+  var following;
+  var accepted;
 
   @override
   void initState() {
@@ -62,7 +63,11 @@ class _ProfileState extends State<Profile> {
     if (response.statusCode == 200) {
       setState(() {
         following = true;
-        followersCount++;
+
+        if (private == false) {
+          accepted = true;
+          followersCount++;
+        }
       });
     }
   }
@@ -73,7 +78,9 @@ class _ProfileState extends State<Profile> {
     print(json.decode(response.body).toString());
     setState(() {
       following = false;
-      followersCount--;
+      if (private == false) {
+        followersCount--;
+      }
     });
   }
 
@@ -81,7 +88,7 @@ class _ProfileState extends State<Profile> {
     var resultFuture = await MuffesApi()
         .cacheGetData(true, '/user/' + widget.userId.toString());
     // print(resultFuture.data[0]['post']);
-    return resultFuture.data[0]['post'];
+    return resultFuture.data['data']['post'];
   }
 
   _loadUserProfile(userId) async {
@@ -90,21 +97,28 @@ class _ProfileState extends State<Profile> {
     var body = res.data;
 
     setState(() {
-      posts = body[0]['posts'];
-      username =
-          body[0]['username'] == null ? "undefined" : body[0]['username'];
-      displayname =
-          body[0]['displayname'] == null ? "undefined" : body[0]['displayname'];
-      postsCount =
-          body[0]['post_count'] == null ? "undefined" : body[0]['post_count'];
-      biography = body[0]['bio'] == null ? null : body[0]['bio'];
-      private = body[0]['private'] == null ? 1 : body[0]['private'];
-      followersCount = body[0]['followers_count'] == null
+      posts = body['data']['posts'];
+      username = body['data']['username'] == null
           ? "undefined"
-          : body[0]['followers_count'];
-      followingCount = body[0]['following_count'] == null
+          : body['data']['username'];
+      displayname = body['data']['displayname'] == null
           ? "undefined"
-          : body[0]['following_count'];
+          : body['data']['displayname'];
+      postsCount = body['data']['post_count'] == null
+          ? "undefined"
+          : body['data']['post_count'];
+      biography = body['data']['bio'] == null ? null : body['data']['bio'];
+      private = body['data']['private'] == null ? 1 : body['data']['private'];
+      followersCount = body['data']['followers_count'] == null
+          ? "undefined"
+          : body['data']['followers_count'];
+      followingCount = body['data']['following_count'] == null
+          ? "undefined"
+          : body['data']['following_count'];
+      following =
+          body['follow_following'] == null ? false : body['follow_following'];
+      accepted =
+          body['follow_accepted'] == null ? false : body['follow_accepted'];
     });
   }
 
@@ -315,26 +329,46 @@ class _ProfileState extends State<Profile> {
                         child: ButtonTheme(
                           minWidth: MediaQuery.of(context).size.width / 2.2,
                           height: 50,
-                          child: following
-                              ? GradientButton(
-                                  child: Text(
-                                    "UNFOLLOW",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      letterSpacing: 20 / (100 / 25.5),
-                                    ),
-                                  ),
-                                  callback: () {
-                                    unfollow(widget.userId);
-                                  },
-                                  gradient:
-                                      customStyle().orangeRedGradientNotShaders,
-                                  shadowColor: customStyle()
-                                      .orangeRedGradientNotShaders
-                                      .colors
-                                      .first
-                                      .withOpacity(0.25),
-                                )
+                          child: following == true
+                              ? accepted == true
+                                  ? GradientButton(
+                                      child: Text(
+                                        "UNFOLLOW",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          letterSpacing: 20 / (100 / 25.5),
+                                        ),
+                                      ),
+                                      callback: () {
+                                        unfollow(widget.userId);
+                                      },
+                                      gradient: customStyle()
+                                          .orangeRedGradientNotShaders,
+                                      shadowColor: customStyle()
+                                          .orangeRedGradientNotShaders
+                                          .colors
+                                          .first
+                                          .withOpacity(0.25),
+                                    )
+                                  : GradientButton(
+                                      child: Text(
+                                        "REQUESTED",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          letterSpacing: 20 / (100 / 25.5),
+                                        ),
+                                      ),
+                                      callback: () {
+                                        unfollow(widget.userId);
+                                      },
+                                      gradient: customStyle()
+                                          .orangeRedGradientNotShaders,
+                                      shadowColor: customStyle()
+                                          .orangeRedGradientNotShaders
+                                          .colors
+                                          .first
+                                          .withOpacity(0.25),
+                                    )
                               : GradientButton(
                                   child: Text(
                                     "FOLLOW",

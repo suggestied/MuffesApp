@@ -54,7 +54,7 @@ class _MuffesFeedState extends State<MuffesFeed> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
-            "FOR YOU",
+            "FEED",
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
