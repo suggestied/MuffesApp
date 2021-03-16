@@ -18,6 +18,7 @@ class PageDesign extends StatefulWidget {
     this.actionChildren,
     this.withAppBar,
     this.withSafeTop,
+    this.withSafeBottom,
   }) : super(key: key);
 
   final Widget children;
@@ -25,6 +26,7 @@ class PageDesign extends StatefulWidget {
   final String pageTitle;
   final bool withAppBar;
   final bool withSafeTop;
+  final bool withSafeBottom;
 
   @override
   _PageDesignState createState() => _PageDesignState();
@@ -120,12 +122,12 @@ class _PageDesignState extends State<PageDesign> {
       body: (widget.withSafeTop == true)
           ? SafeArea(
               top: true,
-              bottom: false,
+              bottom: widget.withSafeBottom == true ? true : false,
               child: widget.children,
             )
           : SafeArea(
               top: false,
-              bottom: false,
+              bottom: widget.withSafeBottom == true ? true : false,
               child: widget.children,
             ),
       // End of the page

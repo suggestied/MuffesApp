@@ -84,105 +84,103 @@ class _PrivacySettingsState extends State<PrivacySettings> {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(
-                "PRIVATE ACCOUNT",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                    color: Colors.grey[800]),
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "PRIVATE ACCOUNT",
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2,
+                  color: Colors.grey[800]),
             ),
-            Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: customStyle().lightColor,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.05),
-                        offset: Offset(0, 7),
-                        blurRadius: 19)
-                  ],
-                ),
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Private account",
-                          style: TextStyle(fontSize: 20),
-                        )
-                      ],
-                    ),
-                    Switch(
-                      value: privateAccount != 0 ? true : false,
-                      onChanged: (value) {
-                        setState(() {
-                          if (value == true) {
-                            privateAccount = 1;
-                          } else {
-                            privateAccount = 0;
-                          }
-                        });
-                        changePrivate(privateAccount);
-                      },
-                      activeTrackColor: primaryColor,
-                      activeColor: primaryColor[700],
-                    ),
-                  ],
-                )),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(
-                "TARGETED POSTS (ON EXPLORE PAGE)",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                    color: Colors.grey[800]),
+          ),
+          Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: customStyle().lightColor,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.05),
+                      offset: Offset(0, 7),
+                      blurRadius: 19)
+                ],
               ),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Private account",
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ),
+                  Switch(
+                    value: privateAccount != 0 ? true : false,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value == true) {
+                          privateAccount = 1;
+                        } else {
+                          privateAccount = 0;
+                        }
+                      });
+                      changePrivate(privateAccount);
+                    },
+                    activeTrackColor: primaryColor,
+                    activeColor: primaryColor[700],
+                  ),
+                ],
+              )),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "TARGETED POSTS (ON EXPLORE PAGE)",
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2,
+                  color: Colors.grey[800]),
             ),
-            Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: customStyle().lightColor,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.05),
-                        offset: Offset(0, 7),
-                        blurRadius: 19)
-                  ],
-                ),
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Targeted posts",
-                          style: TextStyle(fontSize: 20),
-                        )
-                      ],
-                    ),
-                    Switch(
-                      value: true,
-                      onChanged: (value) {},
-                      activeTrackColor: primaryColor,
-                      activeColor: primaryColor[700],
-                    ),
-                  ],
-                )),
-          ],
-        ),
+          ),
+          Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: customStyle().lightColor,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.05),
+                      offset: Offset(0, 7),
+                      blurRadius: 19)
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Targeted posts",
+                        style: TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ),
+                  Switch(
+                    value: true,
+                    onChanged: (value) {},
+                    activeTrackColor: primaryColor,
+                    activeColor: primaryColor[700],
+                  ),
+                ],
+              )),
+        ],
       ),
     );
   }

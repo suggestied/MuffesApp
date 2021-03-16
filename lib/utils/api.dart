@@ -86,6 +86,30 @@ class MuffesApi {
     return await http.delete(fullUrl, headers: _setHeaders());
   }
 
+  multipartPostData(auth, apiPath, data, files) async {
+    var fullUrl = _url + apiPath;
+    if (auth) {
+      await _getToken();
+    }
+
+    var formData = FormData.fromMap(data);
+    for (var file in files) {
+      if (file != null) {
+        print(file);
+        formData.files.addAll([
+          MapEntry("files[]", await MultipartFile.fromFile(file)),
+        ]);
+      }
+    }
+    var response = await Dio().post(
+      fullUrl,
+      data: formData,
+      options: Options(headers: _setHeaders()),
+    );
+    print(response);
+    return response;
+  }
+
   _setHeaders() => {
         'Content-type': 'application/json',
         'Accept': 'application/json',

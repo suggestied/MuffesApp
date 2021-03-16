@@ -107,41 +107,19 @@ class yourAccount extends StatelessWidget {
                           textAlign: TextAlign.left,
                         ),
                         TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          autofocus: false,
-                          autocorrect: false,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(
-                                  color: customStyle().disabledColor, width: 2),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(
-                                  color: customStyle().disabledColor, width: 2),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(width: 2),
-                            ),
-                            filled: true,
-                            fillColor: customStyle().secondaryColor,
-                            hintText: 'suggestied',
-                            hintStyle: TextStyle(
-                                fontSize: 16,
-                                color: customStyle().disabledColor),
+                          decoration: const InputDecoration(
+                            hintText: 'Soo.. new username?',
                           ),
-                          validator: (x) {
-                            if (x.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                            return null;
+                          onSaved: (value) {
+                            // This optional block of code can be used to run
+                            // code when the user saves the form.
                           },
-                        ),
+                          validator: (value) {
+                            return (value != null && value.contains('@'))
+                                ? 'Do not use the @ char.'
+                                : null;
+                          },
+                        )
                       ],
                     ),
                   ),

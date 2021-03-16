@@ -39,6 +39,7 @@ dependencies:
   dio_http_cache: ^0.2.11
   dio: ^3.0.10
   provider: ^5.0.0
+  file_picker: ^3.0.0
 
 dev_dependencies:
   flutter_test:
