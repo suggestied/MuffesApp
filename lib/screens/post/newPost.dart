@@ -21,9 +21,21 @@ class _newPostState extends State<newPost> {
   var description;
 
   post() async {
-    var data = {'content': description, "files": []};
-    var response =
-        await MuffesApi().multipartPostData(true, "/post", data, files);
+    var data = {
+      'content': description,
+      "files[]": [
+        for (var file in files)
+          ...{
+            await MultipartFile.fromPath(
+              "files[]",
+              file,
+              filename: file.split('/').last,
+            )
+          }.toList(),
+      ]
+    };
+    print(data['files[]']);
+    var response = await MuffesApi().multipartPostData(true, "/post", data);
     print(response);
     return response;
   }
@@ -39,8 +51,20 @@ class _newPostState extends State<newPost> {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+                child: Text(
+                  "Content",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: SingleChildScrollView(
@@ -111,6 +135,7 @@ class _newPostState extends State<newPost> {
                             },
                           ),
                           FlatButton(
+                              padding: EdgeInsets.symmetric(horizontal: 40),
                               height: 150,
                               onPressed: () async {
                                 FilePickerResult result = await FilePicker
@@ -133,7 +158,7 @@ class _newPostState extends State<newPost> {
                                 }
                               },
                               child: Icon(
-                                FeatherIcons.plusSquare,
+                                FeatherIcons.plusCircle,
                                 size: 30,
                                 color: customStyle().orangeColor,
                               )),
@@ -160,7 +185,7 @@ class _newPostState extends State<newPost> {
                       autofocus: false,
                       autocorrect: false,
                       minLines: 1,
-                      maxLines: 3,
+                      maxLines: 2,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),

@@ -86,7 +86,7 @@ class MuffesApi {
     return await http.delete(fullUrl, headers: _setHeaders());
   }
 
-  multipartPostData(auth, apiPath, data, files) async {
+  multipartPostData(auth, apiPath, data) async {
     var fullUrl = _url + apiPath;
     if (auth) {
       await _getToken();
