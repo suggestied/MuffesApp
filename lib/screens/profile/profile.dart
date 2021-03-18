@@ -471,6 +471,14 @@ class _ProfileState extends State<Profile> {
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) => Center(
                                 child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.05),
+                                      offset: Offset(0, 7),
+                                      blurRadius: 19)
+                                ],
+                              ),
                               height: double.infinity,
                               width: double.infinity,
                               child: ClipRRect(
@@ -506,8 +514,7 @@ class _ProfileState extends State<Profile> {
                                   )),
                             )),
                             staggeredTileBuilder: (index) =>
-                                StaggeredTile.count((index % 7 == 0) ? 2 : 1,
-                                    (index % 7 == 0) ? 2 : 1),
+                                StaggeredTile.count(1, 1),
                             mainAxisSpacing: 8.0,
                             crossAxisSpacing: 8.0,
                           );
