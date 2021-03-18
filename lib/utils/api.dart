@@ -86,21 +86,30 @@ class MuffesApi {
     return await http.delete(fullUrl, headers: _setHeaders());
   }
 
-  multipartPostData(auth, apiPath, data) async {
+  multipartPostData(auth, apiPath, data, files) async {
     var fullUrl = _url + apiPath;
     if (auth) {
       await _getToken();
     }
 
-    var formData = FormData.fromMap(data);
-    print("data:" + data.toString());
-    var response = await Dio().post(
-      fullUrl,
-      data: formData,
-      options: Options(headers: _setHeaders()),
-    );
-    print(response.data);
-    return response.data;
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('https://api.muffes.com/v1/post'));
+    request.fields.addAll(data);
+    for (var file in files) {
+      request.files.add(await http.MultipartFile.fromPath('files[]', file));
+    }
+
+    request.headers['Content-type'] = 'application/json';
+    request.headers['Accept'] = 'application/json';
+    request.headers['Authorization'] = 'Bearer $token';
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
   }
 
   _setHeaders() => {

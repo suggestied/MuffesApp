@@ -22,21 +22,28 @@ class _MuffesFeedState extends State<MuffesFeed> {
 
   @override
   void initState() {
+    _loadUserToken();
     _loadPosts();
     super.initState();
+  }
+
+  _loadUserToken() async {
+    var _token = await MuffesApi().getToken();
+
+    setState(() {
+      userToken = _token;
+    });
   }
 
   _loadPosts() async {
     var res = await MuffesApi().cacheGetData(true, '/post/feed');
 
     var body = res.data;
-    var _token = await MuffesApi().getToken();
 
     if (res.statusCode == 200) {
       setState(() {
         posts = body['posts'];
         postcount = body['posts_count'];
-        userToken = _token;
       });
     }
   }

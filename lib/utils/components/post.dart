@@ -146,6 +146,14 @@ class _MuffesPostState extends State<MuffesPost> {
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.05),
+                          offset: Offset(0, 7),
+                          blurRadius: 19)
+                    ],
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(13.0),
                     child: CarouselSlider(
